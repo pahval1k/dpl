@@ -1,0 +1,47 @@
+<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 vert-offset-top-5">
+		<p> 
+			{{ 'MAIN_PAGE.EDIT_PROFILE.DESCRIPTION_LABEL' | translate }}
+		</p>
+		<form novalidate ng-submit="submit()" class="form-horizontal" name="editProfileForm">
+          
+		  <!-- group for user name field --> 
+		  <div class="form-group">
+		    <span class="label label-default">{{ 'MAIN_PAGE.EDIT_PROFILE.EMAIL' | translate }}</span> 
+		    <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="email">
+		  </div>
+
+		  <!-- group for age number field --> 
+		  <div class="form-group">
+		  	<span class="label label-default">{{ 'MAIN_PAGE.EDIT_PROFILE.AGE' | translate }}</span> 
+		  	<input type="number" id="ageNumber" name="ageNumber" ng-model="ageNumber" class="form-control" min="1" max="99">
+		  </div>		  
+
+		  <!-- group for date field --> 
+		  <div class="form-group">
+		  	<span class="label label-default">{{ 'MAIN_PAGE.EDIT_PROFILE.BIRTH_DATE' | translate }}</span> 
+            <input ng-model="date" type="text" id="date" name="date" ng-model="date" class="form-control" date-validator>
+		  </div>		  
+
+		  <!-- group for description about user field --> 
+		  <div class="form-group" >
+		  	<span class="label label-default">{{ 'MAIN_PAGE.EDIT_PROFILE.DESCRIPTION' | translate }}</span> 
+		  	<input type="text" id="descriptionField" name="descriptionField"  ng-model="descriptionField" class="form-control" description-validator>
+		  </div>	
+		  
+		  <div class="form-group" >
+		    <div class="form-group" ng-show="editProfileForm.$invalid">
+              <div class="alert alert-danger" role="alert" >{{ 'MAIN_PAGE.EDIT_PROFILE.EDIT_FORM_INVALID' | translate }}</div>
+            </div>
+		  </div>
+		 
+		  <!-- group for submit button -->  
+		  <div class="form-group" >
+		  	<div class="">
+		  		<button type="submit" ng-disabled="!editProfileForm.$dirty" class="btn-default btn-lg btn-block">{{ 'MAIN_PAGE.EDIT_PROFILE.SUBMIT_BUTTON' | translate }}</button>
+		    </div>
+		  </div>
+		  
+
+
+		</form>
+</div>

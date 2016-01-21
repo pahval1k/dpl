@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Task3</title>
+    <!-- bootstrap styles -->
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+<body ng-app="myApp">
+    <div ui-view></div>
+    
+    
+    <!--angular including-->
+    <script src="..\bower_components\angular\angular.js"></script>
+    <!-- angular ui router including-->
+    <script src="..\bower_components\angular-ui-router\release\angular-ui-router.js"></script>
+    <!--angular animate including-->
+    <script src="..\bower_components\angular-animate\angular-animate.js"></script>
+    <!-- localization library including --> 
+	<script src="..\bower_components\angular-translate\angular-translate.js"></script>	
+	<!-- library that loads static files for translatin including --> 
+	<script src="..\bower_components\angular-translate-loader-static-files\angular-translate-loader-static-files.js"></script>
+	<!-- lodash library including --> 
+	<script src="..\bower_components\lodash\lodash.js"></script>	
+	
+	<!-- main script -->
+	<script src="..\jsApp.js"></script>	
+   
+    <!--directives including-->
+    <script src="..\app\directives\dateValidator.js"></script>	
+    <script src="..\app\directives\descriptionValidator.js"></script>	
+    
+    <!--controllers including-->
+    <script src="..\app\controllers\editProfileController.js"></script>	
+    <script src="..\app\controllers\loginController.js"></script>	
+    <script src="..\app\controllers\mainPageController.js"></script>	
+    <script src="..\app\controllers\userInfoController.js"></script>	
+    <script src="..\app\controllers\resetPasswordController.js"></script>	
+    
+    <!--services including-->
+    <script src="..\app\services\loadingMaskService.js"></script>	
+    <script src="..\app\services\loginService.js"></script>	
+    <script src="..\app\services\resetPasswordService.js"></script>	
+    
+</body>
+</html>
