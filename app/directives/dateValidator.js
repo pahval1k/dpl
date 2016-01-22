@@ -31,27 +31,38 @@ myApp.directive('dateValidator',['$compile', '$translate', function ($compile, $
             var validMessage = $compile(template)(scope);
             element.after(validMessage);
             var invalidDateMessageElm = document.getElementById("invalidDateMessage");
-
+            
             ctrl.$validators.dateValidator = function (modelValue, viewValue) {
                 
                 var invalidMessage;
                 
+                var translatePromises = [];
+                var promise;
+                var stateValidator;
+                
                 if (ctrl.$isEmpty(viewValue)) { // if value is empty 
                     
-                    invalidMessage = "Your date text is empty, fill in this field";
-                    changeInvalidMessage(invalidDateMessageElm, invalidMessage);
+                    $translate('DATE_VALIDATOR.EMPTY_FIELD').then(function (translation) {
+                        invalidMessage = translation;
+                        changeInvalidMessage(invalidDateMessageElm, invalidMessage);
+                    });
                     return false;
+                    
                 }
 
                 if (!dateRegexp.test(viewValue)) { // if value in wrong format 
-                    invalidMessage = "You are allowed to input date only in YYYY/MM/DD format, please input date in correct format";
-                    changeInvalidMessage(invalidDateMessageElm, invalidMessage);
+                    $translate('DATE_VALIDATOR.WRONG_FORMAT').then(function (translation) {
+                        invalidMessage = translation;
+                        changeInvalidMessage(invalidDateMessageElm, invalidMessage);
+                    });
                     return false;
                 }
 
                 if (!isValidDate(viewValue)) { // if entered date doesn't exist
-                    invalidMessage = "You entered wrong date, please input exist date";
-                    changeInvalidMessage(invalidDateMessageElm, invalidMessage);
+                    $translate('DATE_VALIDATOR.WRONG_DATE').then(function (translation) {
+                        invalidMessage = translation;
+                        changeInvalidMessage(invalidDateMessageElm, invalidMessage);
+                    });
                     return false;
 
                 }

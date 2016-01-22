@@ -26,10 +26,8 @@ myApp.service('loadingMaskService',['$timeout', function ($timeout) {
         }
         _self.hasPendingRequests = true;
         notifyObserver();
-        console.log(this.hasPendingRequests);   
         deferTimeout = $timeout(function() { 
-            _self.hasPendingRequests = false;
-            console.log(_self.hasPendingRequests);  
+            _self.hasPendingRequests = false; 
             notifyObserver();
             deferTimeout = null;
         }, 3000);

@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordService', '$translate', '$state', function ($scope, loginService, resetPasswordService, $translate, $state) {
+myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordService', '$translate', '$state','CONSTANTS', function ($scope, loginService, resetPasswordService, $translate, $state, CONSTANTS) {
     $scope.emailHasBeenSent = resetPasswordService.emailHasBeenSent;
     
     $scope.loginFailed = false;
@@ -13,7 +13,7 @@ myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordSer
     $scope.submit = function() { 
         loginService($scope.email, $scope.password).then(function successCallback(response) {
             if (!_.isEmpty(response.data)) {
-                localStorage.setItem("userInfo", JSON.stringify(response.data));
+                localStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEY, JSON.stringify(response.data));
                 $state.go('mainPageState');
             } else { 
                 $scope.loginFailed = true;

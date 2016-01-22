@@ -54,3 +54,7 @@ a[ng-click] {
     float: right;
     padding-top: 7px;
 }
+.session-expired-notification { 
+    color: red; 
+    text-align: center;
+}

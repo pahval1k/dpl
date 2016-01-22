@@ -1,21 +1,34 @@
 'use strict';
 
-var myApp = angular.module('myApp', ['ui.router','ngAnimate','pascalprecht.translate']);
+var myApp = angular.module('myApp', ['ui.router','ngAnimate','pascalprecht.translate','ngIdle']);
 
 
-myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$translateProvider", function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
+myApp.run(['Idle', function(Idle){
+    Idle.watch();
+}]);
 
+myApp.constant("CONSTANTS", {
+    "LOCAL_STORAGE_KEY": "userInfo"
+});
+
+myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$translateProvider", "IdleProvider", "KeepaliveProvider", "CONSTANTS", 
+             function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider, IdleProvider, KeepaliveProvider, CONSTANTS) {
+
+    // translation configuration
     $translateProvider.useStaticFilesLoader({
         prefix: 'lang/lang-',
         suffix: '.json'
     });
+    
     $translateProvider.preferredLanguage('ru');
     $translateProvider.useSanitizeValueStrategy('escape');
     
+    // configuration for expired session
+    IdleProvider.idle(10); // in seconds
+    IdleProvider.timeout(5); // in seconds
     
     
-    if (localStorage.getItem("userInfo")) {
-        // For any unmatched url, redirect to /loginPageState
+    if (localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY)) {
         $urlRouterProvider.otherwise("/mainPage");
     } else {
         $urlRouterProvider.otherwise("/loginPage");

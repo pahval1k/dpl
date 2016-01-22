@@ -1,8 +1,8 @@
 'use strict';
 
-myApp.controller('editProfileController', ['$scope','$state', 'loadingMaskService', function ($scope, $state, loadingMaskService) {
+myApp.controller('editProfileController', ['$scope','$state', 'loadingMaskService', 'CONSTANTS', function ($scope, $state, loadingMaskService, CONSTANTS) {
 
-    var userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
     $scope.email = userInfo.email;
     $scope.ageNumber = userInfo.age;
     $scope.date = userInfo.birthDate;
@@ -17,7 +17,7 @@ myApp.controller('editProfileController', ['$scope','$state', 'loadingMaskServic
                 birthDate : $scope.date,
                 aboutUser : $scope.descriptionField
             };
-            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            localStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEY, JSON.stringify(userInfo));
             loadingMaskService.sendRequest();
             $state.go('mainPageState.userProfile');
             
