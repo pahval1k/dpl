@@ -1,5 +1,7 @@
 'use strict';
 
+// service that emulates sending request to email to reset password
+// also notifies to display modal window on login page
 myApp.service('resetPasswordService', ['$timeout', function ($timeout) {
     
     var observerCallback;
@@ -18,7 +20,7 @@ myApp.service('resetPasswordService', ['$timeout', function ($timeout) {
        }
     };
     
-    this.sendEmail = function() { 
+    this.sendEmail = function() { // sending email to reset password 
         var _self = this;
         this.emailHasBeenSent = true;
         $timeout(function() { 

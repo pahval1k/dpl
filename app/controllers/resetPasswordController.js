@@ -1,8 +1,8 @@
 'use strict';
 
-myApp.controller('resetPasswordController', ['$scope', '$state', 'resetPasswordService', '$timeout', function ($scope, $state, resetPasswordService, $timeout) {
+myApp.controller('resetPasswordController', ['$scope', '$state', 'resetPasswordService', function ($scope, $state, resetPasswordService) {
     $scope.email = "";
-    $scope.submit = function() { 
+    $scope.submit = function() {
         // ... logic to reset password
         resetPasswordService.sendEmail();
         $state.go("loginPageState");
