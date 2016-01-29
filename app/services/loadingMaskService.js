@@ -2,7 +2,7 @@
 
 // this service is used to display loading mask during loading page.
 // just emulates outgoing http requests 
-myApp.service('loadingMaskService',['$timeout', function ($timeout) {
+myApp.service('loadingMaskService',['$http','$q', function ($http, $q) {
     
     var observerCallback;
     var _self = this;
@@ -22,17 +22,32 @@ myApp.service('loadingMaskService',['$timeout', function ($timeout) {
        }
     };
     
+
+    
     this.sendRequest = function() { // emulates outgoing requests. 
-        if (deferTimeout) {
-          $timeout.cancel(deferTimeout);   
-        }
+
         _self.hasPendingRequests = true;
         notifyObserver();
-        deferTimeout = $timeout(function() { 
-            _self.hasPendingRequests = false; 
-            notifyObserver();
-            deferTimeout = null;
-        }, 3000);
+        
+        
+        var changeStateRequest = function() { 
+             return $http({
+                method: "POST",
+                url: "/changeState",
+             })
+        }
+        
+        
+        changeStateRequest().then(function successCallback(response) {
+            if (response.data) { 
+                _self.hasPendingRequests = false; 
+                notifyObserver();
+            }
+        }, function errorCallback(response) {
+            console.log("request failed or has been canceled");
+        });
+        
+        
     }
     
 }]);

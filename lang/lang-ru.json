@@ -19,6 +19,8 @@
     "MAIN_PAGE" : { 
         "HOME" : "Главная страница",
         "EDIT_PROFILE_BUTTON" : "Редактировать профиль", 
+        "SVG_GRAPH" : "График SVG",
+        "MENU_LABEL" : "Меню",
         "LOG_OUT" : "Выйти",
         "LOADING" : "Загрузка...",
         "LOG_OUT_SURETY" : "Вы действительно хотите выйти?",

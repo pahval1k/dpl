@@ -3,8 +3,14 @@
 var myApp = angular.module('myApp', ['ui.router','ngAnimate','pascalprecht.translate','ngIdle']);
 
 
-myApp.run(['Idle', function(Idle){
+myApp.run(['Idle', '$rootScope', '$translate',  function(Idle, $rootScope, $translate){
     Idle.watch(); // start observing user site usage (for expired session)
+    angular.element(document).on("click", function (e) {
+        $rootScope.$broadcast("documentClicked", angular.element(e.target));
+    });
+    $rootScope.changeLanguage = function (language) { // change language
+        $translate.use(language);
+    }
 }]);
 
 myApp.constant("CONSTANTS", {
@@ -39,28 +45,34 @@ myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$tran
     $stateProvider
         .state('mainPageState', {
             url: "/mainPage",
-            templateUrl: "app/templates/mainPage.tpl.html",
+            abstract: true,
+            templateUrl: "../app/pages/src/mainPage/src/tpl/mainPage.tpl.html",
             controller: 'mainPageController'
             
         })
         .state('mainPageState.userProfile', {
             url: "/userProfile",
-            templateUrl: "../app/templates/userInfo.tpl.html",
+            templateUrl: "../app/pages/src/userInfoPage/src/tpl/userInfo.tpl.html",
             controller: 'userInfoController'
         })
         .state('mainPageState.editProfile', {
             url: "/editProfile",
-            templateUrl: "../app/templates/editProfile.tpl.html",
+            templateUrl: "../app/pages/src/editProfilePage/src/tpl/editProfile.tpl.html",
             controller: 'editProfileController'
+        })
+        .state('mainPageState.svgGraph', {
+            url: "/svgGraph",
+            templateUrl: "../app/pages/src/svgGraphPage/src/tpl/svgGraph.tpl.html",
+            controller: 'svgController'
         })
         .state('loginPageState', {
             url : "/loginPage",
-            templateUrl : "app/templates/loginPage.tpl.html",
+            templateUrl : "app/pages/src/login/src/tpl/loginPage.tpl.html",
             controller : "loginController"
         })
         .state('forgotPasswordPageState', {
             url: "/forgotPasswordPage",
-            templateUrl: "app/templates/forgotPasswordPage.tpl.html",
+            templateUrl: "app/pages/src/login/src/tpl/forgotPasswordPage.tpl.html",
             controller: 'resetPasswordController'
         });
 }]);

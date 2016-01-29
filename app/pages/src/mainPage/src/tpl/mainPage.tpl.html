@@ -4,8 +4,11 @@
         <a ng-click="changeLanguage('en')" class="label label-default">{{ 'EN' | translate }}</a>
      </div>
      <ul class="nav nav-tabs">
-      <li ng-class="{active: $state.includes('mainPageState.userProfile')}" ng-click="sendRequest()"><a ui-sref="mainPageState.userProfile">{{ 'MAIN_PAGE.HOME' | translate }}</a></li>
-      <li ng-class="{active: $state.includes('mainPageState.editProfile')}" ng-click="sendRequest()"><a ui-sref="mainPageState.editProfile">{{ 'MAIN_PAGE.EDIT_PROFILE_BUTTON' | translate }}</a></li>
+      <li ng-class="{active: $state.includes('^.userProfile')}" ng-click="sendRequest()"><a ui-sref="mainPageState.userProfile">{{ 'MAIN_PAGE.HOME' | translate }}</a></li>
+      <li ng-class="{active: $state.includes('^.editProfile')}" ng-click="sendRequest()"><a ui-sref="mainPageState.editProfile">{{ 'MAIN_PAGE.EDIT_PROFILE_BUTTON' | translate }}</a></li>
+      <li ng-class="{active: $state.includes('^.svgGraph')}" ng-click="sendRequest()"><a ui-sref="mainPageState.svgGraph">{{ 'MAIN_PAGE.SVG_GRAPH' | translate }}</a></li>
+      <li ng-controller="drpdownController"><a><drpdown></drpdown></a></li>
+      
       <li ng-click="logOut()"><a>{{ 'MAIN_PAGE.LOG_OUT' | translate }}</a></li>
     </ul>
     <div ng-show="countdown" class="animate-show alert alert-danger col-sm-4 col-sm-offset-4 text-center">Your session will be expired in {{countdown}} seconds</div>

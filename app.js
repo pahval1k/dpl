@@ -7,45 +7,92 @@ var passwordHash = require('password-hash');
 
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/jsApp.js', express.static(__dirname + '/jsApp.js'));
-app.use('/styles.css', express.static(__dirname + '/styles.css'));
 app.use('/app', express.static(__dirname + '/app'));
 app.use('/lang', express.static(__dirname + '/lang'));
 app.use(bodyParser.json()); // for parsing application/json
 
+var config = require("./data/users.json");
 
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-
-
+var users = require("./data/users.json");
 
 app.post('/userEntry', function (req, res) {
     if (!req.body) return res.sendStatus(400)
-    fileSystem.readFile(__dirname + '/data/users.js', 'utf8', function (err, data) {
-        if (err) throw err; // err during reading the file
+    
+    
+    var userInformation = {};
 
-        try {
-            var obj = JSON.parse(data);
-        } catch (e) {
-            throw "error during json parsing"; //error during json parsing
+    for (var key in users) {
+        if (users[key]['email'] === req.body.email && passwordHash.verify(req.body.password, users[key]['password'])) {
+            userInformation.email = users[key]['email'];
+            userInformation.age = users[key]['age'];
+            userInformation.birthDate = users[key]['birthDate'];
+            userInformation.aboutUser = users[key]['aboutUser'];
+            break;
         }
+    }
+    res.send(userInformation);
 
-        var userInformation = {};
-
-        for (var key in obj) {
-            if (obj[key]['email'] === req.body.email && passwordHash.verify(req.body.password, obj[key]['password'])) {
-                userInformation.email = obj[key]['email'];
-                userInformation.age = obj[key]['age'];
-                userInformation.birthDate = obj[key]['birthDate'];
-                userInformation.aboutUser = obj[key]['aboutUser'];
-                break;
-            }
-        }
-        res.send(userInformation);
-    });
 });
+
+app.post('/changeState', function (req, res) {
+    setTimeout(function() { 
+           res.send(true);
+    },3000);
+
+});
+
+
+var randomIntFromInterval = function(min,max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+/*var requestFailed = false;*/
+
+app.post('/getGraphData', function (req, res) {
+    
+    if (!req.body) return res.sendStatus(400);
+
+    
+    var x1,y1;
+    var x0 = req.body.x0;
+    var y0 = req.body.y0;
+    var capacityY = req.body.capacityY;
+    var x1min = req.body.x1min;
+    
+    x1 = randomIntFromInterval(x1min, x1min + 100); 
+    y1 = randomIntFromInterval(0, capacityY); 
+    
+    var line = {x0: x0 , y0: y0 , x1: x1, y1: y1};
+    
+    
+    /*if (!requestFailed) { // requests falls and then succeed again
+        res.send(line);
+        requestFailed = true;
+    } else { 
+        res.sendStatus(400);
+        requestFailed = false;
+    }*/
+    res.send(line);
+    
+});
+
+var statusMenuResponse;
+
+app.post('/getMenuRequestData', function (req, res) {
+    
+    (statusMenuResponse) ? statusMenuResponse = false : statusMenuResponse = true;
+    setTimeout(function() { 
+        res.send(statusMenuResponse);
+        
+    },2000);
+    
+});
+
 
 app.listen(3000, function () {
     console.log(`Server running`);

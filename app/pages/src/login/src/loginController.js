@@ -14,7 +14,7 @@ myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordSer
         loginService($scope.email, $scope.password).then(function successCallback(response) {
             if (!_.isEmpty(response.data)) {
                 localStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEY, JSON.stringify(response.data));
-                $state.go('mainPageState');
+                $state.go('mainPageState.userProfile');
             } else { 
                 $scope.loginFailed = true;
             }
@@ -22,8 +22,5 @@ myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordSer
             throw "request failed";
         });
         
-    }
-    $scope.changeLanguage = function(language) { 
-        $translate.use(language);
     }
 }]);

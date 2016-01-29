@@ -19,6 +19,8 @@
     "MAIN_PAGE" : { 
         "HOME" : "Home",
         "EDIT_PROFILE_BUTTON" : "Edit Profile", 
+        "SVG_GRAPH" : "SVG Graph",
+        "MENU_LABEL" : "Menu",
         "LOG_OUT" : "Log out",
         "LOADING" : "Loading...",
         "LOG_OUT_SURETY" : "Are you sure you want to log out?",
