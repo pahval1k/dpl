@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var passwordHash = require('password-hash');
 
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+app.use('/uib', express.static(__dirname + '/uib'));
 app.use('/jsApp.js', express.static(__dirname + '/jsApp.js'));
 app.use('/app', express.static(__dirname + '/app'));
 app.use('/lang', express.static(__dirname + '/lang'));
@@ -29,9 +30,10 @@ app.post('/userEntry', function (req, res) {
     for (var key in users) {
         if (users[key]['email'] === req.body.email && passwordHash.verify(req.body.password, users[key]['password'])) {
             userInformation.email = users[key]['email'];
-            userInformation.age = users[key]['age'];
             userInformation.birthDate = users[key]['birthDate'];
-            userInformation.aboutUser = users[key]['aboutUser'];
+            userInformation.firstName = users[key]['firstName'];
+            userInformation.lastName = users[key]['lastName'];
+            userInformation.relations = users[key]['relations'];
             break;
         }
     }
@@ -42,7 +44,7 @@ app.post('/userEntry', function (req, res) {
 app.post('/changeState', function (req, res) {
     setTimeout(function() { 
            res.send(true);
-    },3000);
+    },1000);
 
 });
 

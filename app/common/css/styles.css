@@ -120,3 +120,36 @@ line {
     background-repeat: no-repeat;
     background-size: 30px 20px;
 }
+
+.clearfix:after {
+  content: "."; /* добавить содержимое: "." */
+  display: block;  /* сделать блоком, т.к. inline не может иметь clear */
+  clear: both;  /* с обеих сторон clear */
+  visibility: hidden; /* сделать невидимым, зачем нам точка внизу? */
+  height: 0;  /* сделать высоту 0, чтобы не занимал место */
+}
+
+.relations { 
+    padding: 20px;
+}
+
+.modal-body { 
+    padding: 40px;
+}
+.relation { 
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.remove-relation-button { 
+  float: right;  
+}
+
+.remove-relation-button:hover { 
+  cursor: pointer;
+  color: azure;
+}

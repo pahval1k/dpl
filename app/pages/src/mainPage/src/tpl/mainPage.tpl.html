@@ -6,7 +6,6 @@
      <ul class="nav nav-tabs">
       <li ng-class="{active: $state.includes('^.userProfile')}" ng-click="sendRequest()"><a ui-sref="mainPageState.userProfile">{{ 'MAIN_PAGE.HOME' | translate }}</a></li>
       <li ng-class="{active: $state.includes('^.editProfile')}" ng-click="sendRequest()"><a ui-sref="mainPageState.editProfile">{{ 'MAIN_PAGE.EDIT_PROFILE_BUTTON' | translate }}</a></li>
-      <li ng-class="{active: $state.includes('^.svgGraph')}" ng-click="sendRequest()"><a ui-sref="mainPageState.svgGraph">{{ 'MAIN_PAGE.SVG_GRAPH' | translate }}</a></li>
       <li ng-controller="drpdownController"><a><drpdown></drpdown></a></li>
       
       <li ng-click="logOut()"><a>{{ 'MAIN_PAGE.LOG_OUT' | translate }}</a></li>

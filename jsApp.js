@@ -1,7 +1,6 @@
 'use strict';
 
-var myApp = angular.module('myApp', ['ui.router','ngAnimate','pascalprecht.translate','ngIdle']);
-
+var myApp = angular.module('myApp', ['ui.router','ngAnimate','pascalprecht.translate','ngIdle','720kb.datepicker','ui.bootstrap']);
 
 myApp.run(['Idle', '$rootScope', '$translate',  function(Idle, $rootScope, $translate){
     Idle.watch(); // start observing user site usage (for expired session)
@@ -31,7 +30,7 @@ myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$tran
     $translateProvider.useSanitizeValueStrategy('escape');
     
     // configuration for expired session
-    IdleProvider.idle(10); // in seconds
+    IdleProvider.idle(1000); // in seconds
     IdleProvider.timeout(5); // in seconds
     
 
@@ -69,6 +68,11 @@ myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$tran
             url : "/loginPage",
             templateUrl : "app/pages/src/login/src/tpl/loginPage.tpl.html",
             controller : "loginController"
+        })
+        .state('registrationPageState', {
+            url : "/registration",
+            templateUrl : "app/pages/src/login/src/tpl/registrationPage.tpl.html",
+            controller : "registrationController"
         })
         .state('forgotPasswordPageState', {
             url: "/forgotPasswordPage",
