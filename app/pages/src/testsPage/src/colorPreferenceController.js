@@ -1,7 +1,13 @@
-'use strict';
+(function () {
 
-myApp.controller('colorPreferenceController',['$scope', function ($scope) {
+    'use strict';
 
-    $scope.colors = ['Красный','Оранжевый','Бежевый'];
+    myApp.controller('colorPreferenceController', colorPreferenceController);
+    
+    colorPreferenceController.$inject = ['$scope'];
+    
+    function colorPreferenceController($scope) { 
+        $scope.colors = ['Красный', 'Оранжевый', 'Бежевый'];
+    }
 
-}]);
+})();
