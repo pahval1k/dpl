@@ -88,6 +88,9 @@ line {
 .red { 
     color: red;
 }
+.white { 
+    color: #cfffff;
+}
 
 .user-default-img { 
     background-image: url('../images/default_user_image.jpg'); 

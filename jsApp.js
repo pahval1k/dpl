@@ -59,6 +59,11 @@ myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$tran
             templateUrl: "../app/pages/src/editProfilePage/src/tpl/editProfile.tpl.html",
             controller: 'editProfileController'
         })
+        .state('mainPageState.tests', {
+            url: "/tests",
+            templateUrl: "../app/pages/src/testsPage/src/tpl/tests.tpl.html",
+            controller: 'testsController'
+        })
         .state('mainPageState.svgGraph', {
             url: "/svgGraph",
             templateUrl: "../app/pages/src/svgGraphPage/src/tpl/svgGraph.tpl.html",

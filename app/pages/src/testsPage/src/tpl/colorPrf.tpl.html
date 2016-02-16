@@ -1,0 +1,27 @@
+<div>
+    <p>Цель применения теста: выявление индивидуально-типологических различий на основе предпочтения цвета </p>
+    <p>Инструкция проведения теста. </p>
+    <p>Выделите один самый привлекательный (+) для вас цвет сначала из первых 7, а затем - из последних 5. Аналогично этому выделите наименее привлекательный из первых 7, а затем - из последнийх 5.</p>
+    <p>Используя градации: </p>
+    <ul>
+        <li><span class="glyphicon glyphicon-asterisk red"></span> : не нравится</li>
+        <li><span class="glyphicon glyphicon-asterisk white"></span> : нейтрально</li>
+        <li><span class="glyphicon glyphicon-asterisk green"></span> : нравится</li>
+    </ul>
+</div>
+ <table class="table">
+  <tr ng-repeat="color in colors">
+      <td>
+          <button class="btn btn-default" type="submit">+</button>
+          <button class="btn btn-default" type="submit">-</button>
+      </td>
+      <td>
+          <span class="glyphicon glyphicon-asterisk red"></span>
+          <span class="glyphicon glyphicon-asterisk white"></span>
+          <span class="glyphicon glyphicon-asterisk green"></span>
+      </td>
+      <td>
+         <span> {{color}} </span>
+      </td>
+  </tr>
+</table>
