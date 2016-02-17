@@ -1,1 +1,29 @@
-asdf
+<div>
+    <p>Цель применения теста: выявление индивидуально-типологических различий на основе пред-почтения гласных букв. </p>
+    <p>Инструкция проведения теста. </p>
+    <p>Выделите одну самую привлекательную (+) и наименее привлекательную (-) для Вас буквы из 10 гласных букв (а, о, у, ы, э, я, ё, ю, и, е).</p>
+    <p>Используя градации: </p>
+    <ul>
+        <li><span class="glyphicon glyphicon-asterisk red"></span> : отталкивающая</li>
+        <li><span class="glyphicon glyphicon-asterisk white"></span> : нейтральная</li>
+        <li><span class="glyphicon glyphicon-asterisk green"></span> : привлекательная</li>
+    </ul>
+    <p>поставить около каждой из 10 гласных букв (а, о, у, ы, э, я, ё, ю, и, е), соответствующую Вашему предпочтению отметку.</p>
+
+</div>
+<table class="table">
+    <tr ng-repeat="letter in lettersList">
+        <td>
+            <button class="btn btn-default" type="submit">+</button>
+            <button class="btn btn-default" type="submit">-</button>
+        </td>
+        <td>
+            <span class="glyphicon glyphicon-asterisk red"></span>
+            <span class="glyphicon glyphicon-asterisk white"></span>
+            <span class="glyphicon glyphicon-asterisk green"></span>
+        </td>
+        <td>
+            <span> {{letter}} </span>
+        </td>
+    </tr>
+</table>

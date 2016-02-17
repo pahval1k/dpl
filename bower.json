@@ -16,6 +16,7 @@
     "ng-idle": "~1.1.1",
     "angularjs-datepicker": "~0.2.16",
     "angular-ui-bootstrap": "~1.1.1",
-    "angular-bootstrap": "~1.1.2"
+    "angular-bootstrap": "~1.1.2",
+    "jquery": "~2.2.0"
   }
 }

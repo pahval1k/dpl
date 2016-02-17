@@ -1,1 +1,31 @@
-asdfasdf
+<div>
+    <p>Цель применения теста: выявление индивидуально-типологических различий на основе пред-почтения ролей в кинопроизводстве. </p>
+    <p>Инструкция проведения теста. </p>
+    <p>Представьте, что Вы являетесь участником кинопроизводства. </p>
+    <p>Выберите 2 блока, в которых находятся самые привлекательная и непривлекательная, соответ-ственно, для Вас роли.</p>
+    <p>Напротив каждой роли отметьте по 3-бальной шкале Вашу потенциальную готовность к одной из списка в блоке:</p>
+    <ul>
+        <li><span class="glyphicon glyphicon-asterisk red"></span> : не готов</li>
+        <li><span class="glyphicon glyphicon-asterisk white"></span> : готов условно только при благоприятном стечении обствоятельств</li>
+        <li><span class="glyphicon glyphicon-asterisk green"></span> : готов</li>
+    </ul>
+
+</div>
+<table class="table">
+  <tr ng-repeat="role in roleList">
+      <td>
+          <button class="btn btn-default" type="submit">+</button>
+          <button class="btn btn-default" type="submit">-</button>
+      </td>
+      <td>
+          <span class="glyphicon glyphicon-asterisk red"></span>
+          <span class="glyphicon glyphicon-asterisk white"></span>
+          <span class="glyphicon glyphicon-asterisk green"></span>
+      </td>
+      <td>
+         <span> {{role.title}} </span>
+         
+      </td>
+  </tr>
+</table>
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>

@@ -7,7 +7,8 @@
     colorPreferenceController.$inject = ['$scope'];
     
     function colorPreferenceController($scope) { 
-        $scope.colors = ['Красный', 'Оранжевый', 'Бежевый'];
+        $scope.colorsListOne = ['Красный', 'Оранжевый', 'Желтый','Зеленый', 'Голубой', 'Синий', 'Фиолетовый'];
+        $scope.colorsListTwo = ['Черный','Белый','Коричневый','Розовый','Серебристо-серый'];
     }
 
 })();
