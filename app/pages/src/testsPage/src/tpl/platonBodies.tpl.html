@@ -1,1 +1,37 @@
-asdf
+<div>
+    <p>Цель применения теста: выявление индивидуально-типологических различий восприятия Платоновых тел.</p>
+    <p>Инструкция проведения теста. </p>
+    <p>Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: ка-кое из первых пяти геометрических тел самое привлекательное (+) и наименее привлекательное (–) для Вас.</p>
+    <p>Поставьте около каждого из 6 тел свои оценки предпочтений:</p>
+    <ul>
+        <li><span class="glyphicon glyphicon-asterisk red"></span> : негативное</li>
+        <li><span class="glyphicon glyphicon-asterisk white"></span> : нейтрально</li>
+        <li><span class="glyphicon glyphicon-asterisk green"></span> : позитивное</li>
+    </ul>
+
+</div>
+
+
+<table class="table">
+    <tr ng-repeat="body in bodyList">
+      <td>
+          {{$index + 1}}
+       </td> 
+       <td>
+          {{body.name}}
+       </td>
+       <td>
+          <button class="btn btn-default" type="submit">+</button>
+          <button class="btn btn-default" type="submit">-</button>
+       </td> 
+       <td>
+           <img src="{{body.imgPath}}" alt="">
+       </td>
+       <td>
+        <span class="glyphicon glyphicon-asterisk red"></span>
+        <span class="glyphicon glyphicon-asterisk white"></span>
+        <span class="glyphicon glyphicon-asterisk green"></span>
+       </td>
+       
+    </tr>
+</table>

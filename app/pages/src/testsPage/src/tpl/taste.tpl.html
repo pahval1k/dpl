@@ -1,1 +1,30 @@
-asdf
+<div>
+    <p>Цель применения теста: выявление индивидуально-типологических вкусовых различий</p>
+    <p>Инструкция проведения теста. </p>
+    <p>Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: какой привкус еды или напитка самый любимый (+) и нелюбимый (–), используя радиокнопки.</p>
+    <p>Поставьте около каждого из 5 оттенков вкуса свои оценки предпочтений:</p>
+    <ul>
+        <li><span class="glyphicon glyphicon-asterisk red"></span> : не нравится</li>
+        <li><span class="glyphicon glyphicon-asterisk white"></span> : нейтрально</li>
+        <li><span class="glyphicon glyphicon-asterisk green"></span> : нравится</li>
+    </ul>
+
+</div>
+
+
+<table class="table">
+    <tr ng-repeat="taste in tasteList">
+       <td>
+          <button class="btn btn-default" type="submit">+</button>
+          <button class="btn btn-default" type="submit">-</button>
+       </td> 
+       <td>
+        <span class="glyphicon glyphicon-asterisk red"></span>
+        <span class="glyphicon glyphicon-asterisk white"></span>
+        <span class="glyphicon glyphicon-asterisk green"></span>
+       </td>
+       <td>
+           {{$index + 1}} {{taste}}
+       </td>
+    </tr>
+</table>

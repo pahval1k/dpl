@@ -66,13 +66,6 @@
             }
 
         ];
-        $scope.init = function() { 
-            $(function () {
-              //$('[data-toggle="tooltip"]').tooltip()
-                console.log(window.jQuery);
-            })
-        };
-        $scope.init();
     }
 
 })();

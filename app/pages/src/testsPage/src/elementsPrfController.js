@@ -7,7 +7,7 @@
     elementsPrfController.$inject = ['$scope'];
     
     function elementsPrfController($scope) { 
-        
+        $scope.elementsList = ['Вода','Металл(воздух)','Земля','Огонь','Дерево(Эфир)'];
     }
 
 })();

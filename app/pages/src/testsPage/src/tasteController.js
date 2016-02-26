@@ -7,7 +7,7 @@
     tasteController.$inject = ['$scope'];
     
     function tasteController($scope) { 
-        
+        $scope.tasteList = ['соленый','острый','сладкий','горький','кислый'];
     }
 
 })();

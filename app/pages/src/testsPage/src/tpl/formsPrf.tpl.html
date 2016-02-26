@@ -1,1 +1,30 @@
-asdf
+<div>
+    <p>Цель применения теста: выявление индивидуально-типологических различий восприятия форм.</p>
+    <p>Инструкция проведения теста. </p>
+    <p>Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: ка-кая из пяти форм самая привлекательная (+) и непривлекательная (–):</p>
+    <p>Поставьте около каждой из 5 форм свои оценки предпочтений:</p>
+    <ul>
+        <li><span class="glyphicon glyphicon-asterisk red"></span> : негативное</li>
+        <li><span class="glyphicon glyphicon-asterisk white"></span> : нейтрально</li>
+        <li><span class="glyphicon glyphicon-asterisk green"></span> : позитивное</li>
+    </ul>
+
+</div>
+
+
+<table class="table">
+    <tr ng-repeat="formImgPath in formImgPathList">
+       <td>
+          <button class="btn btn-default" type="submit">+</button>
+          <button class="btn btn-default" type="submit">-</button>
+       </td> 
+       <td>
+        <span class="glyphicon glyphicon-asterisk red"></span>
+        <span class="glyphicon glyphicon-asterisk white"></span>
+        <span class="glyphicon glyphicon-asterisk green"></span>
+       </td>
+       <td>
+           <img src="{{formImgPath}}" alt="">
+       </td>
+    </tr>
+</table>
