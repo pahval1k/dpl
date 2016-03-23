@@ -14,13 +14,11 @@
 <table class="table">
   <tr ng-repeat="role in roleList">
       <td>
-          <button class="btn btn-default" type="submit">+</button>
-          <button class="btn btn-default" type="submit">-</button>
+          <button class="btn btn-default ng-class:{ 'selected-button': $index == selectedPosButton };" ng-click="selectPositiveLetter($index)" type="button">+</button>
+          <button class="btn btn-default ng-class:{ 'selected-button': $index == selectedNegButton };" ng-click="selectNegativeLetter($index)" type="button">-</button>
       </td>
       <td>
-          <span class="glyphicon glyphicon-asterisk red"></span>
-          <span class="glyphicon glyphicon-asterisk white"></span>
-          <span class="glyphicon glyphicon-asterisk green"></span>
+          <span ng-repeat="gradation in gradations" class="glyphicon glyphicon-asterisk {{gradation}} ng-class:{ 'selected-color': $index == selectedColors[$parent.$index] };" ng-click="selectColor($parent.$index, $index)"></span>
       </td>
       <td>
          <span custom-tooltip title="{{ role.description }}"> {{role.title}} </span>

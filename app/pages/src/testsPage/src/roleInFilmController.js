@@ -4,9 +4,9 @@
 
     myApp.controller('roleInFilmController', roleInFilmController);
     
-    roleInFilmController.$inject = ['$scope'];
+    roleInFilmController.$inject = ['$scope', 'preferencesService'];
     
-    function roleInFilmController($scope) { 
+    function roleInFilmController($scope, preferencesService) { 
         
         $scope.roleList = [
             {
@@ -66,6 +66,18 @@
             }
 
         ];
+        
+        $scope.gradations = preferencesService.gradations;
+        $scope.selectedColors = preferencesService.selectedColors;
+        $scope.selectPositiveLetter = preferencesService.selectPositiveLetter;
+        $scope.selectNegativeLetter = preferencesService.selectNegativeLetter;
+        $scope.selectedPosButton = preferencesService.selectedPosButton;
+        $scope.selectedNegButton = preferencesService.selectedNegButton;
+        $scope.selectColor = preferencesService.selectColor;
+        //$scope.submitForm = submitForm;
+        $scope.isValid = true;
+        
+        
     }
 
 })();
