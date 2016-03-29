@@ -11,7 +11,10 @@ myApp.directive('checkrelationValidator',['CONSTANTS', function (CONSTANTS) { //
 	        ctrl.$validators.checkrelationValidator = function(modelValue, viewValue) {
                 
                 
+
                 var relationLenght = userInfo.relations.length;
+               
+                    
                 for (var i=0; i<relationLenght; i++) { 
                     if (userInfo.relations[i].relationType == viewValue) { 
                         return false;

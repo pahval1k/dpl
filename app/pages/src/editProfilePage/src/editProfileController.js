@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('editProfileController', ['$scope', '$state', 'loadingMaskService', 'CONSTANTS', '$uibModal', '$log', '$rootScope', function ($scope, $state, loadingMaskService, CONSTANTS, $uibModal, $log, $rootScope) {
+myApp.controller('editProfileController', ['$scope', '$state', 'loadingMaskService', 'CONSTANTS', '$uibModal', '$log', '$rootScope', '$http', function ($scope, $state, loadingMaskService, CONSTANTS, $uibModal, $log, $rootScope, $http) {
 
     var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
     $scope.email = userInfo.email;
@@ -21,9 +21,24 @@ myApp.controller('editProfileController', ['$scope', '$state', 'loadingMaskServi
                 lastName: $scope.lastName,
                 relations: $scope.relations
             };
-            localStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEY, JSON.stringify(userInfo));
-            loadingMaskService.sendRequest();
-            $state.go('mainPageState.userProfile');
+            
+            $http({
+              method: 'POST',
+              url: '/editRelation',
+              data: {
+                  email: userInfo.email,
+                  relations: $scope.relations
+              }
+            }).then(function successCallback(response) {
+                localStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEY, JSON.stringify(userInfo));
+                loadingMaskService.sendRequest();
+                $state.go('mainPageState.userProfile');
+              }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+            
+            
 
         }
     };

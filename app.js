@@ -50,7 +50,8 @@ app.post('/userRegistration', function (req, res) {
         "password": passwordHash.generate(req.body.password),
         "birthDate": req.body.birthDate,
         "firstName": req.body.firstName,
-        "lastName": req.body.lastName
+        "lastName": req.body.lastName,
+        "relations": []
     }
     
     users.push(newUser);
@@ -72,6 +73,52 @@ app.post('/checkEmail', function (req, res) {
     res.send(state);
 
 });
+
+app.post('/addRelation', function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    
+    var index = null;
+    for (var key in users) {
+        if (users[key]['email'] === req.body.email) {
+            index = key;
+            break;
+        }
+    }
+    
+    var relation = {
+        relationType: req.body.relation.relationType,
+        birthDate: req.body.relation.birthDate,
+        firstName: req.body.relation.firstName,
+        lastName: req.body.relation.lastName,
+    };
+    
+    users[index].relations.push(relation);
+    
+    fs.writeFile('./data/users.json', JSON.stringify(users) , 'utf-8');
+    
+    res.send(true);
+
+});
+
+app.post('/editRelation', function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    
+    var index = null;
+    for (var key in users) {
+        if (users[key]['email'] === req.body.email) {
+            index = key;
+            break;
+        }
+    }
+    
+    users[index].relations = req.body.relations;
+    
+    fs.writeFile('./data/users.json', JSON.stringify(users) , 'utf-8');
+    
+    res.send(true);
+
+});
+
 
 app.post('/changeState', function (req, res) {
     setTimeout(function() { 
