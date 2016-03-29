@@ -44,9 +44,10 @@ app.post('/userEntry', function (req, res) {
 
 app.post('/userRegistration', function (req, res) {
     if (!req.body) return res.sendStatus(400);
+
     var newUser = {
         "email":  req.body.email,
-        "password": req.body.password,
+        "password": passwordHash.generate(req.body.password),
         "birthDate": req.body.birthDate,
         "firstName": req.body.firstName,
         "lastName": req.body.lastName
@@ -55,6 +56,20 @@ app.post('/userRegistration', function (req, res) {
     users.push(newUser);
     fs.writeFile('./data/users.json', JSON.stringify(users) , 'utf-8');
     res.send(true);
+
+});
+
+app.post('/checkEmail', function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    var email = req.body.email;
+    var state = false;
+    for (var key in users) {
+        if (users[key]['email'] === email) {
+            state = true;
+            break;
+        }
+    }
+    res.send(state);
 
 });
 
@@ -114,5 +129,5 @@ app.post('/getMenuRequestData', function (req, res) {
 
 
 app.listen(3000, function () {
-    console.log(`Server running`);
+    console.log('Server running');
 });

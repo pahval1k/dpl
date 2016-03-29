@@ -7,6 +7,7 @@
     <span class="loginLabel">{{ 'LOG_IN_FORM.LOG_IN' | translate }}</span>
     
     <div ng-show="emailHasBeenSent" class="alert alert-info animate-show" role="alert">{{ 'LOG_IN_FORM.RESET_PASSWORD' | translate }}</div>
+    <div ng-show="registrationComplete" class="alert alert-info animate-show" role="alert"> Регистрация завершена. Вы можете зайти в систему используя свои учетные данные</div>
     <form novalidate ng-submit="submit()">
       <div class="form-group">
         <label for="inputEmail">{{ 'LOG_IN_FORM.EMAIL' | translate }}</label>

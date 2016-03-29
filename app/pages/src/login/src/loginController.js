@@ -1,14 +1,19 @@
 'use strict';
 
-myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordService', '$translate', '$state','CONSTANTS', function ($scope, loginService, resetPasswordService, $translate, $state, CONSTANTS) {
+myApp.controller('loginController', ['$scope', 'loginService', 'resetPasswordService','registrationCompleteService', '$translate', '$state','CONSTANTS', function ($scope, loginService, resetPasswordService,registrationCompleteService, $translate, $state, CONSTANTS) {
     $scope.emailHasBeenSent = resetPasswordService.emailHasBeenSent;
-    
+    $scope.registrationComplete = registrationCompleteService.registrationComplete;
     $scope.loginFailed = false;
-    
-    var updateEmailHasBeenSentStatus = function() { 
-        $scope.emailHasBeenSent = resetPasswordService.emailHasBeenSent;   
+
+    var updateEmailHasBeenSentStatus = function() {
+        $scope.emailHasBeenSent = resetPasswordService.emailHasBeenSent;
+    }
+
+    var updateRegistrationCompleteStatus = function() {
+        $scope.registrationComplete = registrationCompleteService.registrationComplete;
     }
     resetPasswordService.registerObserver(updateEmailHasBeenSentStatus);
+    registrationCompleteService.registerObserver(updateRegistrationCompleteStatus);
     
     $scope.submit = function() { 
         loginService($scope.email, $scope.password).then(function successCallback(response) {

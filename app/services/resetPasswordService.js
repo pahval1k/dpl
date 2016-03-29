@@ -20,10 +20,10 @@ myApp.service('resetPasswordService', ['$timeout', function ($timeout) {
        }
     };
     
-    this.sendEmail = function() { // sending email to reset password 
+    this.sendEmail = function() { // sending email to reset password
         var _self = this;
         this.emailHasBeenSent = true;
-        $timeout(function() { 
+        $timeout(function() {
             _self.emailHasBeenSent = false;
             notifyObserver();
         }, 3000);
