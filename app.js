@@ -4,6 +4,7 @@ var path = require('path');
 var fileSystem = require('fs');
 var bodyParser = require('body-parser');
 var passwordHash = require('password-hash');
+var fs = require('fs');
 
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/uib', express.static(__dirname + '/uib'));
@@ -38,6 +39,22 @@ app.post('/userEntry', function (req, res) {
         }
     }
     res.send(userInformation);
+
+});
+
+app.post('/userRegistration', function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    var newUser = {
+        "email":  req.body.email,
+        "password": req.body.password,
+        "birthDate": req.body.birthDate,
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName
+    }
+    
+    users.push(newUser);
+    fs.writeFile('./data/users.json', JSON.stringify(users) , 'utf-8');
+    res.send(true);
 
 });
 
