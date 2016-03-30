@@ -14,12 +14,14 @@
         $scope.submitForm = submitForm;
         
         function submitForm() { 
-            if ($scope.lessonGrades.length != $scope.classesList.length || $scope.teacherGrades.length != $scope.classesList.length) {
+            if (!$scope.gradesForm.$valid) {
                 $scope.isValid = false;
                 $timeout(function() { 
                     $scope.isValid = true;
                 },3000);
-            } else {}
+            } else {
+                console.log("send items");
+            }
             
             
         }

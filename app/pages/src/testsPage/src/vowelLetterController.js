@@ -4,9 +4,9 @@
 
     myApp.controller('vowelLetterController', vowelLetterController);
     
-    vowelLetterController.$inject = ['$scope','$timeout'];
+    vowelLetterController.$inject = ['$scope','$timeout','preferencesService'];
     
-    function vowelLetterController($scope, $timeout) { 
+    function vowelLetterController($scope, $timeout, preferencesService) {
         $scope.lettersList = ['а', 'о', 'у', 'ы', 'э', 'я', 'ё', 'ю', 'и', 'е'];
         $scope.gradations = ['red','white','green'];
         $scope.selectedColors = [];
@@ -31,30 +31,17 @@
         }
         
         function submitForm() {
-            if (validateForm()) { 
+            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
                 console.log("form has been submitted");
                 var T2 = outputDataFormat();
                 console.log(T2);
-            } else { 
+            } else {
                 showInvalidMessage();
                 console.log("form hasn't been submitted");
             }
         
         }
-        
-        function validateForm() { 
-            if ($scope.selectedPosButton == -1 || $scope.selectedNegButton == -1) { 
-                return false;
-            }
-            var selectedLettersLength = $scope.selectedColors.length;
-            for (var j = 0; j < selectedLettersLength ; j++ ) { 
-                if ($scope.selectedColors[j] == undefined ) { 
-                    return false;
-                } 
-            }
 
-            return true;
-        }
         
         function outputDataFormat() { 
             var selectedLettersLength = $scope.selectedColors.length;

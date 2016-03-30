@@ -14,8 +14,8 @@
         <tr ng-repeat="class in classesList">
            <td>{{$index}}</td> 
            <td>{{class}}</td>
-           <td><input type="number" ng-model="lessonGrades[$index]" min="0" max="10"></td>
-           <td><input type="number" ng-model="teacherGrades[$index]" min="0" max="10"></td>
+           <td><input type="number" ng-model="lessonGrades[$index]" min="0" max="10" required></td>
+           <td><input type="number" ng-model="teacherGrades[$index]" min="0" max="10" required></td>
         </tr>
     </table>
     <div ng-show="!isValid" class="alert alert-danger" role="alert">Вы должны заполнить все необходимые данные, прежде чем отправить информацию</div>

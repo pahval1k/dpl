@@ -19,6 +19,24 @@
                                     'Ради дела сохраняю трезвый ум и не впадаю в сенти-ментальность даже при виде сильных страданий близ-ких',
                                     'Столь узко фокусируюсь на последовательности кон-кретных действий, что порой теряю восприятие фоно-вых моментов',
                                     'Счастливо не допускаю критического обдумывания и переживаний даже в неблагоприятных условиях'];
+        $scope.submitForm = submit;
+        $scope.isValid = true;
+
+        function submit() {
+
+            if ($scope.temperamentForm.$valid) {
+                console.log("form has been submitted ");
+            } else {
+                showInvalidMessage();
+            }
+        }
+
+        function showInvalidMessage() {
+            $scope.isValid = false;
+            $timeout(function() {
+                $scope.isValid = true;
+            },3000)
+        }
     }
 
 })();

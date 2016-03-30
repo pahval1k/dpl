@@ -4,9 +4,9 @@
 
     myApp.controller('roleInFilmController', roleInFilmController);
     
-    roleInFilmController.$inject = ['$scope', 'preferencesService'];
+    roleInFilmController.$inject = ['$scope', '$timeout', 'preferencesService'];
     
-    function roleInFilmController($scope, preferencesService) { 
+    function roleInFilmController($scope, $timeout, preferencesService) {
         
         $scope.roleList = [
             {
@@ -69,14 +69,40 @@
         
         $scope.gradations = preferencesService.gradations;
         $scope.selectedColors = preferencesService.selectedColors;
-        $scope.selectPositiveLetter = preferencesService.selectPositiveLetter;
-        $scope.selectNegativeLetter = preferencesService.selectNegativeLetter;
-        $scope.selectedPosButton = preferencesService.selectedPosButton;
-        $scope.selectedNegButton = preferencesService.selectedNegButton;
+        $scope.selectPositiveLetter = selectPositiveLetter;
+        $scope.selectNegativeLetter = selectNegativeLetter;
+        $scope.selectedPosButton = -1;
+        $scope.selectedNegButton = -1;
         $scope.selectColor = preferencesService.selectColor;
-        //$scope.submitForm = submitForm;
+        $scope.submitForm = submitForm;
         $scope.isValid = true;
-        
+
+        function selectNegativeLetter(index) {
+            $scope.selectedNegButton = index;
+        }
+
+        function selectPositiveLetter(index) {
+            $scope.selectedPosButton = index;
+        }
+
+        function submitForm() {
+            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
+                console.log("form has been submitted");
+                //var T2 = outputDataFormat();
+                //console.log(T2);
+            } else {
+                showInvalidMessage();
+                console.log("form hasn't been submitted");
+            }
+
+        }
+
+        function showInvalidMessage() {
+            $scope.isValid = false;
+            $timeout(function() {
+                $scope.isValid = true;
+            },3000)
+        }
         
     }
 
