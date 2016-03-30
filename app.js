@@ -21,6 +21,7 @@ app.get('/', function(req, res) {
 });
 
 var users = require("./data/users.json");
+var usersTestData = require("./data/usersTestData.json");
 
 app.post('/userEntry', function (req, res) {
     if (!req.body) return res.sendStatus(400)
@@ -114,6 +115,47 @@ app.post('/editRelation', function (req, res) {
     users[index].relations = req.body.relations;
     
     fs.writeFile('./data/users.json', JSON.stringify(users) , 'utf-8');
+    
+    res.send(true);
+
+});
+
+app.post('/testInformation', function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    
+    
+    
+    var userIndex = null;
+    for (var key in usersTestData) {
+        if (usersTestData[key] === req.body.email) {
+            userIndex = key;
+            break;
+        }
+    }
+    
+    if (userIndex == null) { 
+        usersTestData.push(req.body.email);
+        userIndex = usersTestData.length;
+    }
+    
+    console.log(usersTestData);
+    console.log(userIndex);
+    console.log(usersTestData[userIndex - 1]);
+    
+    /*var testIndex = null;
+    for (var key in usersTestData[userIndex]) {
+        if (usersTestData[userIndex].key === req.body.testName) {
+            testIndex = key;
+            break;
+        }
+    }
+    
+    if (testIndex == null) { 
+        usersTestData[userIndex].push(req.body.testName);
+        testIndex = usersTestData[userIndex].length;
+    }
+    
+    usersTestData[userIndex].testIndex.test = req.body.test;*/
     
     res.send(true);
 

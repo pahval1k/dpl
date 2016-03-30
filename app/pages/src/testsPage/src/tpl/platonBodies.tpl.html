@@ -11,27 +11,28 @@
 
 </div>
 
+<form ng-submit="submitForm()"></form>
+    <table class="table">
+        <tr ng-repeat="body in bodyList">
+          <td>
+              {{$index + 1}}
+           </td> 
+           <td>
+              {{body.name}}
+           </td>
+           <td>
+              <button class="btn btn-default ng-class:{ 'selected-button': $index == selectedPosButton };" ng-click="selectPositiveLetter($index)" type="button">+</button>
+              <button class="btn btn-default ng-class:{ 'selected-button': $index == selectedNegButton };" ng-click="selectNegativeLetter($index)" type="button">-</button>
+           </td> 
+           <td>
+               <img src="{{body.imgPath}}" alt="">
+           </td>
+           <td>
+            <span ng-repeat="gradation in gradations" class="glyphicon glyphicon-asterisk {{gradation}} ng-class:{ 'selected-color': $index == selectedColors[$parent.$index] };" ng-click="selectColor( $parent.$index, $index)"></span>
+           </td>
 
-<table class="table">
-    <tr ng-repeat="body in bodyList">
-      <td>
-          {{$index + 1}}
-       </td> 
-       <td>
-          {{body.name}}
-       </td>
-       <td>
-          <button class="btn btn-default" type="submit">+</button>
-          <button class="btn btn-default" type="submit">-</button>
-       </td> 
-       <td>
-           <img src="{{body.imgPath}}" alt="">
-       </td>
-       <td>
-        <span class="glyphicon glyphicon-asterisk red"></span>
-        <span class="glyphicon glyphicon-asterisk white"></span>
-        <span class="glyphicon glyphicon-asterisk green"></span>
-       </td>
-       
-    </tr>
-</table>
+        </tr>
+    </table>
+    <div ng-show="!isValid" class="alert alert-danger" role="alert">Вы должны заполнить все необходимые данные, прежде чем отправить информацию</div>
+    <button type="submit" class="btn btn-default center-block">Отправить данные</button>
+</form> 

@@ -4,9 +4,9 @@
 
     myApp.controller('colorPreferenceController', colorPreferenceController);
     
-    colorPreferenceController.$inject = ['$scope', '$timeout'];
+    colorPreferenceController.$inject = ['$scope', '$timeout','$http', '$uibModalInstance'];
     
-    function colorPreferenceController($scope, $timeout) { 
+    function colorPreferenceController($scope, $timeout, $http, $uibModalInstance) { 
         $scope.colorsList = [ 
             ['Красный', 'Оранжевый', 'Желтый','Зеленый', 'Голубой', 'Синий', 'Фиолетовый'],
             ['Черный','Белый','Коричневый','Розовый','Серебристо-серый'] 
@@ -40,6 +40,21 @@
             if (validateForm()) { 
                 console.log("form has been submitted");
                 var T1 = outputDataFormat();
+                $http({
+                  method: 'POST',
+                  url: '/testInformation',
+                  data: {
+                      email: "pahvalka@mail.ru",
+                      testName: "colorPreference",
+                      testResults: T1
+                  }
+                }).then(function successCallback(response) {
+                    $uibModalInstance.close();
+                    // when the response is available
+                  }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
                 console.log(T1);
             } else { 
                 showInvalidMessage();

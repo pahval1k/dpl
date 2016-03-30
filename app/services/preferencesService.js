@@ -26,6 +26,9 @@ myApp.service('preferencesService', ['$timeout', function ($timeout) {
             return false;
         }
         var selectedLettersLength = selectedColors.length;
+        if (selectedLettersLength == 0) { 
+            return false; 
+        }
         for (var j = 0; j < selectedLettersLength ; j++ ) {
             if (selectedColors[j] == undefined ) {
                 return false;
