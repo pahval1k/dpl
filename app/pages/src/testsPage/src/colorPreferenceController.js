@@ -4,9 +4,9 @@
 
     myApp.controller('colorPreferenceController', colorPreferenceController);
     
-    colorPreferenceController.$inject = ['$scope', '$timeout','$http', '$uibModalInstance'];
+    colorPreferenceController.$inject = ['$scope', '$timeout','$http', '$uibModalInstance', 'testDataService', 'CONSTANTS'];
     
-    function colorPreferenceController($scope, $timeout, $http, $uibModalInstance) { 
+    function colorPreferenceController($scope, $timeout, $http, $uibModalInstance, testDataService, CONSTANTS) {
         $scope.colorsList = [ 
             ['Красный', 'Оранжевый', 'Желтый','Зеленый', 'Голубой', 'Синий', 'Фиолетовый'],
             ['Черный','Белый','Коричневый','Розовый','Серебристо-серый'] 
@@ -20,6 +20,7 @@
         $scope.selectedNegButton = [];
         $scope.submitForm = submitForm
         $scope.isValid = true;
+        $scope.testName = "color_preferences";
         
         function selectColor(tableIndex, colorIndex, gradationIndex) {
             if (!$scope.selectedColors[tableIndex]) { 
@@ -40,20 +41,11 @@
             if (validateForm()) { 
                 console.log("form has been submitted");
                 var T1 = outputDataFormat();
-                $http({
-                  method: 'POST',
-                  url: '/testInformation',
-                  data: {
-                      email: "pahvalka@mail.ru",
-                      testName: "colorPreference",
-                      testResults: T1
-                  }
-                }).then(function successCallback(response) {
+                var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
+                testDataService(userInfo.email, $scope.testName, T1).then(function successCallback(response) {
                     $uibModalInstance.close();
-                    // when the response is available
-                  }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
+                }, function errorCallback(response) {
+                    throw "request failed";
                 });
                 console.log(T1);
             } else { 

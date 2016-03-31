@@ -4,9 +4,9 @@
 
     myApp.controller('vowelLetterController', vowelLetterController);
     
-    vowelLetterController.$inject = ['$scope','$timeout','preferencesService'];
+    vowelLetterController.$inject = ['$scope','$timeout','preferencesService','testDataService', 'CONSTANTS', '$uibModalInstance'];
     
-    function vowelLetterController($scope, $timeout, preferencesService) {
+    function vowelLetterController($scope, $timeout, preferencesService, testDataService, CONSTANTS, $uibModalInstance) {
         $scope.lettersList = ['а', 'о', 'у', 'ы', 'э', 'я', 'ё', 'ю', 'и', 'е'];
         $scope.gradations = ['red','white','green'];
         $scope.selectedColors = [];
@@ -17,6 +17,7 @@
         $scope.selectedNegButton = -1;
         $scope.submitForm = submitForm;
         $scope.isValid = true;
+        $scope.testName = "vowel_letters";
         
         function selectColor(letterIndex, gradationIndex) {
             $scope.selectedColors[letterIndex] = gradationIndex;
@@ -34,6 +35,12 @@
             if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
                 console.log("form has been submitted");
                 var T2 = outputDataFormat();
+                var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
+                testDataService(userInfo.email, $scope.testName, T2).then(function successCallback(response) {
+                    $uibModalInstance.close();
+                }, function errorCallback(response) {
+                    throw "request failed";
+                });
                 console.log(T2);
             } else {
                 showInvalidMessage();

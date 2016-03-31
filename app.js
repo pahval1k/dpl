@@ -127,36 +127,37 @@ app.post('/testInformation', function (req, res) {
     
     var userIndex = null;
     for (var key in usersTestData) {
-        if (usersTestData[key] === req.body.email) {
+        if (usersTestData[key].email === req.body.email) {
             userIndex = key;
             break;
         }
     }
     
-    if (userIndex == null) { 
-        usersTestData.push(req.body.email);
-        userIndex = usersTestData.length;
+    if (userIndex == null) {
+        var userWithTests = { "email": req.body.email, "tests" : [] }
+        usersTestData.push(userWithTests);
+        userIndex = usersTestData.length - 1;
     }
+
     
-    console.log(usersTestData);
-    console.log(userIndex);
-    console.log(usersTestData[userIndex - 1]);
-    
-    /*var testIndex = null;
-    for (var key in usersTestData[userIndex]) {
-        if (usersTestData[userIndex].key === req.body.testName) {
+    var testIndex = null;
+    for (var key in usersTestData[userIndex].tests) {
+        if (usersTestData[userIndex].tests[key].testName === req.body.testName) {
             testIndex = key;
             break;
         }
     }
-    
-    if (testIndex == null) { 
-        usersTestData[userIndex].push(req.body.testName);
-        testIndex = usersTestData[userIndex].length;
+
+    if (testIndex == null) {
+        var test = {"testName" : req.body.testName, "testResults" : {} }
+        usersTestData[userIndex].tests.push(test);
+        testIndex = usersTestData[userIndex].tests.length - 1;
     }
-    
-    usersTestData[userIndex].testIndex.test = req.body.test;*/
-    
+
+    usersTestData[userIndex].tests[testIndex].testResults = req.body.testResults;
+
+    fs.writeFile('./data/usersTestData.json', JSON.stringify(usersTestData) , 'utf-8');
+
     res.send(true);
 
 });
