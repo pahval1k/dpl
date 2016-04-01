@@ -4,9 +4,9 @@
 
     myApp.controller('roleInFilmController', roleInFilmController);
     
-    roleInFilmController.$inject = ['$scope', '$timeout', 'preferencesService'];
+    roleInFilmController.$inject = ['$scope','$timeout','preferencesService','testDataService', 'CONSTANTS', '$uibModalInstance'];
     
-    function roleInFilmController($scope, $timeout, preferencesService) {
+    function roleInFilmController($scope, $timeout, preferencesService, testDataService, CONSTANTS, $uibModalInstance) {
         
         $scope.roleList = [
             {
@@ -76,6 +76,7 @@
         $scope.selectColor = preferencesService.selectColor;
         $scope.submitForm = submitForm;
         $scope.isValid = true;
+        $scope.testName = "role_in_films_preference";
 
         function selectNegativeLetter(index) {
             $scope.selectedNegButton = index;
@@ -88,8 +89,13 @@
         function submitForm() {
             if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
                 console.log("form has been submitted");
-                //var T2 = outputDataFormat();
-                //console.log(T2);
+                var T4 = preferencesService.outputDataFormat($scope.selectedColors, $scope.selectedPosButton, $scope.selectedNegButton);
+                var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
+                testDataService(userInfo.email, $scope.testName, T4).then(function successCallback(response) {
+                    $uibModalInstance.close();
+                }, function errorCallback(response) {
+                    throw "request failed";
+                });
             } else {
                 showInvalidMessage();
                 console.log("form hasn't been submitted");

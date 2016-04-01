@@ -1,1 +1,1 @@
-[{"email":"pahvalka@mail.ru","tests":[{"testName":"color_preferences","testResults":[-1,1,0,0,0,0,0,1,0,0,-1,-1,6,3,7,4]},{"testName":"vowel_letters","testResults":[-1,0,-1,0,-1,0,-1,0,-1,0,2,2]}]}]
+[{"email":"pahvalka@mail.ru","tests":[{"testName":"vowel_letters","testResults":[0,0,-1,0,3,2]},{"testName":"role_in_films_preference","testResults":[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,2,2]}]}]

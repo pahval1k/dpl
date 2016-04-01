@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.directive('customTooltip',[function () { // declaring directive for date validating
+myApp.directive('customTooltip',[function () { // declaring directive
     return {
         restrict: 'A', // allowed to use only as a attribute
         link: function (scope, element, attrs, ctrl) {

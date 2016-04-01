@@ -38,6 +38,20 @@ myApp.service('preferencesService', ['$timeout', function ($timeout) {
         return true;
     }
 
+    this.outputDataFormat = function(selectedColors, selectedPosButton, selectedNegButton) {
+        var selectedLength = selectedColors.length;
+        var T = [];
+        var outputIndex = 0;
+        for (var i = 0; i < selectedLength ; i ++ ) {
+            T[outputIndex] = selectedColors[i] - 1;
+            outputIndex ++;
+        }
+        T[outputIndex] = selectedPosButton + 1;
+        outputIndex ++;
+        T[outputIndex] = selectedNegButton + 1;
+        return T;
+    }
+
 
     
     
