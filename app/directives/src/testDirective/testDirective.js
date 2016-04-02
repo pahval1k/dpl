@@ -14,7 +14,8 @@
                 testDescription: "@",
                 gradationDescription: "=",
                 itemList: "=",
-                modalInstance: "="
+                modalInstance: "=",
+                content: "@"
             },
             controller: controllerFunc
         };
@@ -30,9 +31,11 @@
             $scope.selectNegativeLetter = selectNegativeLetter;
             $scope.selectedPosButton = -1;
             $scope.selectedNegButton = -1;
+            $scope.contentUrl = "";
+            defineContent();
 
             function submitForm() {
-                if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
+                if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors, $scope.itemList.length)) {
                     console.log("form has been submitted");
                     var T2 = preferencesService.outputDataFormat($scope.selectedColors, $scope.selectedPosButton, $scope.selectedNegButton);
                     var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
@@ -65,6 +68,22 @@
                 $timeout(function() {
                     $scope.isValid = true;
                 },3000)
+            }
+            
+            function defineContent() { 
+                console.log($scope.content);
+                switch ($scope.content) {
+                  case CONSTANTS.IMG:
+                    $scope.contentUrl = "app/common/tpls/img.tpl.html";
+                    break;
+                  case CONSTANTS.STRING:
+                    $scope.contentUrl = "app/common/tpls/string.tpl.html";
+                    break;
+                  default: 
+                    console.log("please define the type of content for the directive");
+                }
+                console.log($scope.contentUrl);
+
             }
         }
 

@@ -4,51 +4,23 @@
 
     myApp.controller('elementsPrfController', elementsPrfController);
     
-    elementsPrfController.$inject = ['$scope','preferencesService', '$timeout'];
+    elementsPrfController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS'];
     
-    function elementsPrfController($scope, preferencesService, $timeout) { 
+    function elementsPrfController($scope, $uibModalInstance, CONSTANTS) { 
         $scope.elementsList = ['Вода','Металл(воздух)','Земля','Огонь','Дерево(Эфир)'];
-        $scope.gradations = ['red','white','green'];
-        $scope.selectedColors = [];
-        $scope.selectColor = selectColor;
-        $scope.selectPositiveLetter = selectPositiveLetter;
-        $scope.selectNegativeLetter = selectNegativeLetter;
-        $scope.selectedPosButton = -1;
-        $scope.selectedNegButton = -1;
-        $scope.isValid = true;
-        $scope.submitForm = submitForm;
-
-
-        function selectColor(letterIndex, gradationIndex) {
-            $scope.selectedColors[letterIndex] = gradationIndex;
-        }
-
-        function selectNegativeLetter(index) {
-            $scope.selectedNegButton = index;
-        }
-
-        function selectPositiveLetter(index) {
-            $scope.selectedPosButton = index;
-        }
-
-        function submitForm() {
-            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
-                console.log("form has been submitted");
-                //var T2 = outputDataFormat();
-                //console.log(T2);
-            } else {
-                showInvalidMessage();
-                console.log("form hasn't been submitted");
-            }
-
-        }
-
-        function showInvalidMessage() {
-            $scope.isValid = false;
-            $timeout(function() {
-                $scope.isValid = true;
-            },3000)
-        }
+        $scope.testName = "elements_preference";
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий восприятия сти-хий. Инструкция проведения теста. Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: ка-кой из пяти элементов стихий самый любимый (+) и нелюбимый (–), используя радиокнопки. Поставьте около каждого из 5 элементов стихий свои оценки предпочтений:";
+        $scope.gradationDescription = [{color: "red",
+                                        value: "негативное"
+                                        },{
+                                        color: "white",
+                                        value: "нейтральное"
+                                        },{
+                                        color: "green",
+                                        value: "позитивное"
+                                        }];
+        $scope.modalInstance = $uibModalInstance;
+        $scope.content = CONSTANTS.STRING;
     }
 
 })();

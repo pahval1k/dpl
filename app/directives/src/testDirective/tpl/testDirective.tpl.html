@@ -17,7 +17,7 @@
                     <span ng-repeat="gradation in gradationDescription" class="glyphicon glyphicon-asterisk {{gradation.color}} ng-class:{ 'selected-color': $index == selectedColors[$parent.$index] };" ng-click="selectColor($parent.$index, $index)"></span>
                 </td>
                 <td>
-                    <span> {{item}} </span>
+                   <div ng-include="$parent.contentUrl"></div>
                 </td>
             </tr>
         </table>

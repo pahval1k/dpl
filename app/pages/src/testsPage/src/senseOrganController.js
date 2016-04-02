@@ -4,51 +4,24 @@
 
     myApp.controller('senseOrganController', senseOrganController);
     
-    senseOrganController.$inject = ['$scope','preferencesService', '$timeout'];
+    senseOrganController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS'];
     
-    function senseOrganController($scope, preferencesService, $timeout) {
+    function senseOrganController($scope, $uibModalInstance, CONSTANTS) {
         $scope.senseList = ['слух', 'обоняние', 'осязание', 'вкус', 'зрение'];
-        $scope.gradations = ['red','white','green'];
-        $scope.selectedColors = [];
-        $scope.selectColor = selectColor;
-        $scope.selectPositiveLetter = selectPositiveLetter;
-        $scope.selectNegativeLetter = selectNegativeLetter;
-        $scope.selectedPosButton = -1;
-        $scope.selectedNegButton = -1;
-        $scope.isValid = true;
-        $scope.submitForm = submitForm;
-
-
-        function selectColor(letterIndex, gradationIndex) {
-            $scope.selectedColors[letterIndex] = gradationIndex;
-        }
-
-        function selectNegativeLetter(index) {
-            $scope.selectedNegButton = index;
-        }
-
-        function selectPositiveLetter(index) {
-            $scope.selectedPosButton = index;
-        }
-
-        function submitForm() {
-            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
-                console.log("form has been submitted");
-                //var T2 = outputDataFormat();
-                //console.log(T2);
-            } else {
-                showInvalidMessage();
-                console.log("form hasn't been submitted");
-            }
-
-        }
-
-        function showInvalidMessage() {
-            $scope.isValid = false;
-            $timeout(function() {
-                $scope.isValid = true;
-            },3000)
-        }
+        $scope.testName = "sens_organ_test";
+        $scope.gradationDescription = [{color: "red",
+                                        value: "слабый"
+                                        },{
+                                        color: "white",
+                                        value: "средний"
+                                        },{
+                                        color: "green",
+                                        value: "сильный"
+                                        }];
+        $scope.modalInstance = $uibModalInstance;
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий органов чувств. Инструкция проведения теста. Выделите свой самый сильный (+) и самый слабый (–) орган чувств, используя радиокнопки.. Используя градации:";
+        $scope.content = CONSTANTS.STRING;
+        
     }
 
 })();

@@ -21,12 +21,12 @@ myApp.service('preferencesService', ['$timeout', function ($timeout) {
         this.selectedPosButton = index;
     }
 
-    this.isFormValid = function(selectedPosButton, selectedNegButton, selectedColors) {
+    this.isFormValid = function(selectedPosButton, selectedNegButton, selectedColors, itemListLength) {
         if (selectedPosButton == -1 || selectedNegButton == -1) {
             return false;
         }
         var selectedLettersLength = selectedColors.length;
-        if (selectedLettersLength == 0) { 
+        if (selectedLettersLength !== itemListLength) { 
             return false; 
         }
         for (var j = 0; j < selectedLettersLength ; j++ ) {

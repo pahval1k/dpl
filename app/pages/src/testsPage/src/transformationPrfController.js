@@ -4,55 +4,27 @@
 
     myApp.controller('transformationPrfController', transformationPrfController);
     
-    transformationPrfController.$inject = ['$scope','preferencesService', '$timeout'];
+    transformationPrfController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS'];
     
-    function transformationPrfController($scope, preferencesService, $timeout) { 
+    function transformationPrfController($scope, $uibModalInstance, CONSTANTS) { 
         $scope.transformationList = ['естественное количественное накопление (или освобождение от лишнего)',
                                      'планомерный рост (или увядание)',
                                      '3качественное развитие (или деградация)',
                                      'рождение (или смерть)',
                                      'появление (или исчезновение)'];
-        $scope.gradations = ['red','white','green'];
-        $scope.selectedColors = [];
-        $scope.selectColor = selectColor;
-        $scope.selectPositiveLetter = selectPositiveLetter;
-        $scope.selectNegativeLetter = selectNegativeLetter;
-        $scope.selectedPosButton = -1;
-        $scope.selectedNegButton = -1;
-        $scope.isValid = true;
-        $scope.submitForm = submitForm;
-
-
-        function selectColor(letterIndex, gradationIndex) {
-            $scope.selectedColors[letterIndex] = gradationIndex;
-        }
-
-        function selectNegativeLetter(index) {
-            $scope.selectedNegButton = index;
-        }
-
-        function selectPositiveLetter(index) {
-            $scope.selectedPosButton = index;
-        }
-
-        function submitForm() {
-            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
-                console.log("form has been submitted");
-                //var T2 = outputDataFormat();
-                //console.log(T2);
-            } else {
-                showInvalidMessage();
-                console.log("form hasn't been submitted");
-            }
-
-        }
-
-        function showInvalidMessage() {
-            $scope.isValid = false;
-            $timeout(function() {
-                $scope.isValid = true;
-            },3000)
-        }
+        $scope.testName = "transformation_preferences";
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий восприятия превращений. Инструкция проведения теста.     Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: ка-кая из пяти пар превращений (в прямом и обратном виде) самая интересная (+) и интересная (–). Поставьте около каждой из 5 пар превращений свои оценки предпочтений: ";
+        $scope.gradationDescription = [{color: "red",
+                                        value: "негативно"
+                                        },{
+                                        color: "white",
+                                        value: "нейтрально"
+                                        },{
+                                        color: "green",
+                                        value: "позитивно"
+                                        }];
+        $scope.modalInstance = $uibModalInstance;
+        $scope.content = CONSTANTS.STRING;
     }
 
 })();

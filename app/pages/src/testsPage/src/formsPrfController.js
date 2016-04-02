@@ -4,55 +4,27 @@
 
     myApp.controller('formsPrfController', formsPrfController);
     
-    formsPrfController.$inject = ['$scope','preferencesService', '$timeout'];
+    formsPrfController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS'];
     
-    function formsPrfController($scope, preferencesService, $timeout) { 
+    function formsPrfController($scope, $uibModalInstance, CONSTANTS) { 
         $scope.formImgPathList = ['app/common/images/strangeshape.png', 
                                   'app/common/images/circle.png', 
                                   'app/common/images/rectangle.png', 
                                   'app/common/images/triangle.png', 
                                   'app/common/images/verticalrectangle.png'];
-        $scope.gradations = ['red','white','green'];
-        $scope.selectedColors = [];
-        $scope.selectColor = selectColor;
-        $scope.selectPositiveLetter = selectPositiveLetter;
-        $scope.selectNegativeLetter = selectNegativeLetter;
-        $scope.selectedPosButton = -1;
-        $scope.selectedNegButton = -1;
-        $scope.isValid = true;
-        $scope.submitForm = submitForm;
-
-
-        function selectColor(letterIndex, gradationIndex) {
-            $scope.selectedColors[letterIndex] = gradationIndex;
-        }
-
-        function selectNegativeLetter(index) {
-            $scope.selectedNegButton = index;
-        }
-
-        function selectPositiveLetter(index) {
-            $scope.selectedPosButton = index;
-        }
-
-        function submitForm() {
-            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
-                console.log("form has been submitted");
-                //var T2 = outputDataFormat();
-                //console.log(T2);
-            } else {
-                showInvalidMessage();
-                console.log("form hasn't been submitted");
-            }
-
-        }
-
-        function showInvalidMessage() {
-            $scope.isValid = false;
-            $timeout(function() {
-                $scope.isValid = true;
-            },3000)
-        }
+        $scope.testName = "form_preferences";
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий восприятия форм. Инструкция проведения теста. Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: ка-кая из пяти форм самая привлекательная (+) и непривлекательная (–): Поставьте около каждой из 5 форм свои оценки предпочтений:";
+        $scope.gradationDescription = [{color: "red",
+                                        value: "негативное"
+                                        },{
+                                        color: "white",
+                                        value: "нейтральное"
+                                        },{
+                                        color: "green",
+                                        value: "позитивное"
+                                        }];
+        $scope.modalInstance = $uibModalInstance;
+        $scope.content = CONSTANTS.IMG;
     }
 
 })();

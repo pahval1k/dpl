@@ -13,7 +13,9 @@ myApp.run(['Idle', '$rootScope', '$translate',  function(Idle, $rootScope, $tran
 }]);
 
 myApp.constant("CONSTANTS", {
-    "LOCAL_STORAGE_KEY": "userInfo" // constant to set and get info about user in localStorage 
+    "LOCAL_STORAGE_KEY": "userInfo",// constant to set and get info about user in localStorage 
+    "IMG": "IMG",
+    "STRING": "STRING"
 });
 
 myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$translateProvider", "IdleProvider", "KeepaliveProvider", "CONSTANTS", 
