@@ -32,6 +32,7 @@
             $scope.selectedPosButton = -1;
             $scope.selectedNegButton = -1;
             $scope.contentUrl = "";
+            $scope.ifString = ifString;
             defineContent();
 
             function submitForm() {
@@ -71,7 +72,6 @@
             }
             
             function defineContent() { 
-                console.log($scope.content);
                 switch ($scope.content) {
                   case CONSTANTS.IMG:
                     $scope.contentUrl = "app/common/tpls/img.tpl.html";
@@ -82,8 +82,11 @@
                   default: 
                     console.log("please define the type of content for the directive");
                 }
-                console.log($scope.contentUrl);
 
+            }
+            
+            function ifString(item) { 
+                return (typeof item == "string");
             }
         }
 

@@ -4,9 +4,9 @@
 
     myApp.controller('platonBodiesController', platonBodiesController);
     
-    platonBodiesController.$inject = ['$scope','preferencesService', '$timeout'];
+    platonBodiesController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS'];
     
-    function platonBodiesController($scope, preferencesService, $timeout) { 
+    function platonBodiesController($scope, $uibModalInstance, CONSTANTS) { 
         $scope.bodyList = [{
             name: "Икосаэдр",
             imgPath: "app/common/images/ikosaedr.png"
@@ -27,47 +27,19 @@
             imgPath: "app/common/images/spherewithpoint.png"
         }];
         
-        $scope.gradations = ['red','white','green'];
-        $scope.selectedColors = [];
-        $scope.selectColor = selectColor;
-        $scope.selectPositiveLetter = selectPositiveLetter;
-        $scope.selectNegativeLetter = selectNegativeLetter;
-        $scope.selectedPosButton = -1;
-        $scope.selectedNegButton = -1;
-        $scope.isValid = true;
-        $scope.submitForm = submitForm;
-
-
-        function selectColor(letterIndex, gradationIndex) {
-            $scope.selectedColors[letterIndex] = gradationIndex;
-        }
-
-        function selectNegativeLetter(index) {
-            $scope.selectedNegButton = index;
-        }
-
-        function selectPositiveLetter(index) {
-            $scope.selectedPosButton = index;
-        }
-
-        function submitForm() {
-            if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors)) {
-                console.log("form has been submitted");
-                //var T2 = outputDataFormat();
-                //console.log(T2);
-            } else {
-                showInvalidMessage();
-                console.log("form hasn't been submitted");
-            }
-
-        }
-
-        function showInvalidMessage() {
-            $scope.isValid = false;
-            $timeout(function() {
-                $scope.isValid = true;
-            },3000)
-        }
+        $scope.testName = "platoon_bodies_test";
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий восприятия Платоновых тел. Инструкция проведения теста. Попытайтесь почувствовать самую первую подсознательную реакцию, отвечая на вопрос: ка-кое из первых пяти геометрических тел самое привлекательное (+) и наименее привлекательное (–) для Вас. Поставьте около каждого из 6 тел свои оценки предпочтений:";
+        $scope.gradationDescription = [{color: "red",
+                                        value: "негативное"
+                                        },{
+                                        color: "white",
+                                        value: "нейтрально"
+                                        },{
+                                        color: "green",
+                                        value: "позитивное"
+                                        }];
+        $scope.modalInstance = $uibModalInstance;
+        $scope.content = CONSTANTS.IMG;
     }
 
 })();
