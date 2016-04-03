@@ -6,12 +6,12 @@ myApp.controller('testsController',['$scope', '$uibModal', function ($scope, $ui
         'colorPrf': {
            title: 'Тест на предпочтение цвета', 
            templateUrl: 'app/pages/src/testsPage/src/tpl/colorPrf.tpl.html',
-           controller: 'colorPreferenceController' 
+           controller: 'colorPreferenceController'
         },
         'vowelLtr': {
            title: 'Тест на предпочтение гласных букв', 
            templateUrl: 'app/pages/src/testsPage/src/tpl/vowelLtr.tpl.html',
-           controller: 'vowelLetterController' 
+           controller: 'vowelLetterController'
         },
         'schoolClasses': {
            title: 'Тест на предпочтение школьных предметов', 
@@ -95,22 +95,25 @@ myApp.controller('testsController',['$scope', '$uibModal', function ($scope, $ui
         }
         
         
-        
-        
-        
-        
-        
-        
-        
     }
     
-    $scope.open = function (test) {
-
-        var modalInstance = $uibModal.open({
-            templateUrl: test.templateUrl,
-            controller: test.controller
-        });
-       
+    $scope.open = openFnc;
+    $scope.passedTest = passedTextFnc;
+    
+    function passedTextFnc(index) { 
+        return true;
+    }
+    
+    
+    function openFnc(test) {
+        if (test) { 
+            var modalInstance = $uibModal.open({
+                templateUrl: test.templateUrl,
+                controller: test.controller
+            });
+        } else { 
+            throw "please pass the test instance into function";
+        }
     };
 
 }]);

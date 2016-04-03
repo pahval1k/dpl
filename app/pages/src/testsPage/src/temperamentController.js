@@ -4,9 +4,9 @@
 
     myApp.controller('temperamentController', temperamentController);
     
-    temperamentController.$inject = ['$scope'];
+    temperamentController.$inject = ['$scope', '$uibModalInstance'];
     
-    function temperamentController($scope) { 
+    function temperamentController($scope, $uibModalInstance) { 
         $scope.personQualityList = ['Легко иду на нестандартные поступки, даже не продумав все причины и следствия',
                                     'Внимательно отслеживаю свой внутренний голос даже на фоне значительных отвлечений со стороны внешнего мира',
                                     'Даже в обычных событиях со всей серьезно-стью пытаюсь обнаружить для себя что-то новое и интересное',
@@ -19,24 +19,11 @@
                                     'Ради дела сохраняю трезвый ум и не впадаю в сенти-ментальность даже при виде сильных страданий близ-ких',
                                     'Столь узко фокусируюсь на последовательности кон-кретных действий, что порой теряю восприятие фоно-вых моментов',
                                     'Счастливо не допускаю критического обдумывания и переживаний даже в неблагоприятных условиях'];
-        $scope.submitForm = submit;
-        $scope.isValid = true;
-
-        function submit() {
-
-            if ($scope.temperamentForm.$valid) {
-                console.log("form has been submitted ");
-            } else {
-                showInvalidMessage();
-            }
-        }
-
-        function showInvalidMessage() {
-            $scope.isValid = false;
-            $timeout(function() {
-                $scope.isValid = true;
-            },3000)
-        }
+        $scope.titleList = ['Характеристика темперамента','Оценка'];
+        $scope.testName = "temperament_test";
+        $scope.testDescription = "Цель применения теста: прогноз темперамента на основании психологического теста. Инструкция проведения теста. Отметьте степень достижимости для Вас состояний (по 10-бальной шкале) в представленных ниже 6 парах. По смыслу, описанные в каждой паре состояния, являются противоположными полю-сами соответствующего аспекта темперамента человека.";
+        $scope.modalInstance = $uibModalInstance;
+        
     }
 
 })();

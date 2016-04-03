@@ -4,9 +4,9 @@
 
     myApp.controller('filmGenresController', filmGenresController);
     
-    filmGenresController.$inject = ['$scope'];
+    filmGenresController.$inject = ['$scope', '$uibModalInstance'];
     
-    function filmGenresController($scope) { 
+    function filmGenresController($scope, $uibModalInstance) { 
         $scope.genreList = ['Исторические',
                             'Научная фантастика',
                             'Путешествие в игровые виртуальные миры, фентези',
@@ -19,6 +19,13 @@
                             'Военные',
                             'Ужасы, эротика',
                             'Серьезные психологические'];
+        $scope.testName = "film_genres_preferences";
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий предпочтения жанров фильмов. Инструкция проведения теста. Отметьте степень интереса к разного рода фильмам (по 10-бальной шкале) в представленных ниже 6 парах. По смыслу, описанные в каждой паре жанры фильмов, являются противоположными полюсами соответствующего аспекта темперамента человека.";
+        $scope.titleList = [
+            'Жанр фильма',
+            'Оценка'
+        ];
+        $scope.modalInstance = $uibModalInstance;
     }
 
 })();

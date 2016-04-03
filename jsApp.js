@@ -37,7 +37,7 @@ myApp.config(["$stateProvider", "$urlRouterProvider", "$locationProvider","$tran
     
 
     if (localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY)) { // if user is not authorized 
-        $urlRouterProvider.otherwise("/mainPage");
+        $urlRouterProvider.otherwise("/mainPage/userProfile");
     } else {
         $urlRouterProvider.otherwise("/loginPage");
         

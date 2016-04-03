@@ -4,27 +4,18 @@
 
     myApp.controller('schoolClassesController', schoolClassesController);
     
-    schoolClassesController.$inject = ['$scope','$timeout'];
+    schoolClassesController.$inject = ['$scope', '$uibModalInstance'];
     
-    function schoolClassesController($scope,$timeout) { 
+    function schoolClassesController($scope, $uibModalInstance) { 
         $scope.classesList = ['Труд','Математика','Музыка','ИЗО','Язык','Литература','Иностранный язык','Биология','История','География','Химия','Физика','Информатика','Физкультура','МХК','Обществоведение','Ритмика'];
-        $scope.isValid = true;
-        $scope.lessonGrades = [];
-        $scope.teacherGrades = [];
-        $scope.submitForm = submitForm;
-        
-        function submitForm() { 
-            if (!$scope.gradesForm.$valid) {
-                $scope.isValid = false;
-                $timeout(function() { 
-                    $scope.isValid = true;
-                },3000);
-            } else {
-                console.log("send items");
-            }
-            
-            
-        }
+        $scope.testName = "schoold_classes";
+        $scope.testDescription = "Цель применения теста: выявление индивидуально-типологических различий на основе предпо-чтения школьных предметов. Инструкция проведения теста. Для приведенных ниже 17 школьных предметов по 10-бальной шкале (1-10) отметьте, в какой степени Вам нравился школьный предмет и учи-тель (учителя) по этому предмету. Используя градации: ";
+        $scope.titleList = [
+            'Школьные предметы',
+            'Оценка предмета',
+            'Оценка учителя'
+        ];
+        $scope.modalInstance = $uibModalInstance;
     }
 
 })();
