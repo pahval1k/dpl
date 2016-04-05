@@ -33,6 +33,11 @@ myApp.controller('testsController',['$scope', '$uibModal', function ($scope, $ui
            templateUrl: 'app/pages/src/testsPage/src/tpl/temperament.tpl.html',
            controller: 'temperamentController' 
         },
+        'rouadToLife': {
+           title: 'Тест "Дорога жизни"', 
+           templateUrl: 'app/pages/src/testsPage/src/tpl/roadToLife.tpl.html',
+           controller: 'roadToLifeController' 
+        },
         'senseOrgan': {
            title: 'Тест "органы чувств"', 
            templateUrl: 'app/pages/src/testsPage/src/tpl/senseOrgan.tpl.html',
