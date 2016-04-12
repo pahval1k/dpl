@@ -65,12 +65,16 @@
                 }
             }
             T1[outputIndex] = $scope.selectedPosButton[0] + 1;
+            T1[T1[outputIndex]] = T1[T1[outputIndex]] + 2;
             outputIndex ++;
             T1[outputIndex] = $scope.selectedPosButton[1] + 1;
+            T1[T1[outputIndex]] = T1[T1[outputIndex]] + 2;
             outputIndex ++;
             T1[outputIndex] = $scope.selectedNegButton[0] + 1;
+            T1[T1[outputIndex]] = T1[T1[outputIndex]] - 2;
             outputIndex ++;
             T1[outputIndex] = $scope.selectedNegButton[1] + 1;
+            T1[T1[outputIndex]] = T1[T1[outputIndex]] - 2;
             return T1;
         }
         

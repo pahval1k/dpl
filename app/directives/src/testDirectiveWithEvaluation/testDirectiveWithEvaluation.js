@@ -9,12 +9,14 @@
         var directive = {
             restrict: 'E', // allowed to use only as a element
             templateUrl: "app/directives/src/testDirectiveWithEvaluation/tpl/testDirectiveWithEvaluation.tpl.html",
+            replace: true,
             scope: {
                 testName: "@",
                 testDescription: "@",
                 itemList: "=",
                 titleList: "=",
                 modalInstance: "=",
+                outputData: '&'
                 
             },
             controller: controllerFunc
@@ -30,7 +32,13 @@
             function submitForm() {
                 if ($scope[$scope.testName].$valid) {
                     var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
-                    testDataService(userInfo.email, $scope.testName, $scope.grades).then(function successCallback(response) {
+                    var T1;
+                    if ($scope.outputData) { 
+                        T1 = $scope.outputData({ grades: $scope.grades });
+                    } else { 
+                        T1 = $scope.grades;
+                    }
+                    testDataService(userInfo.email, $scope.testName, T1).then(function successCallback(response) {
                         $scope.modalInstance.close();
                     }, function errorCallback(response) {
                         throw "request failed";
