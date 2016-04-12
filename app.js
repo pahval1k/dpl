@@ -43,6 +43,36 @@ app.post('/userEntry', function (req, res) {
 
 });
 
+app.post('/getPassedTests', function (req, res) {
+    if (!req.body) return res.sendStatus(400)
+    
+    var tests = [];
+    
+    var userIndex = null;
+    for (var key in usersTestData) {
+        if (usersTestData[key].email === req.body.email) {
+            userIndex = key;
+            break;
+        }
+    }
+    
+    if (userIndex == null) {
+        var userWithTests = { "email": req.body.email, "tests" : [] }
+        usersTestData.push(userWithTests);
+        userIndex = usersTestData.length - 1;
+        res.send(tests);
+    }
+    
+    for (var key in usersTestData[userIndex].tests) {
+        tests.push(usersTestData[userIndex].tests[key].testName);
+    }
+    
+    res.send(tests);
+    
+    
+
+});
+
 app.post('/userRegistration', function (req, res) {
     if (!req.body) return res.sendStatus(400);
 

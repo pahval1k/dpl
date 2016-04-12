@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('testsController',['$scope', '$uibModal', function ($scope, $uibModal) {
+myApp.controller('testsController',['$scope', '$uibModal', 'passedTestsService', 'CONSTANTS', function ($scope, $uibModal, passedTestsService, CONSTANTS) {
 
     $scope.tests = {
         'colorPrf': {
@@ -103,9 +103,19 @@ myApp.controller('testsController',['$scope', '$uibModal', function ($scope, $ui
     }
     
     $scope.open = openFnc;
-    $scope.passedTest = passedTextFnc;
+    $scope.passedTest = passedTestFnc;
     
-    function passedTextFnc(index) { 
+    function getPassedTests() { 
+        var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
+        console.log(userInfo.email);
+        passedTestsService(userInfo.email).then(function successCallback(response) {
+            //console.log(response);
+        }, function errorCallback(response) {
+            throw "request failed";
+        });   
+    }
+    
+    function passedTestFnc(index) { 
         return true;
     }
     
