@@ -171,3 +171,7 @@ line {
 .selected-button:focus { 
     background-color: #B1B1B1;
 }
+
+.large-text-container .custom-style {
+    font-size: 20px;
+}

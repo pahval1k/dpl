@@ -96,7 +96,12 @@ myApp.controller('testsController',['$scope', '$uibModal', 'passedTestsService',
         'filmGenres': {
            title: 'Тест "Предпочтение жанров фильмов"', 
            templateUrl: 'app/pages/src/testsPage/src/tpl/filmGenres.tpl.html',
-           controller: 'filmGenresController' 
+           controller: 'filmGenresController'
+        },
+        'tvshowsPreferences': {
+            title: 'Тест "Предпочтение рубрик передач"',
+            templateUrl: 'app/pages/src/testsPage/src/tpl/tvshowsPreferences.tpl.html',
+            controller: 'tvshowsPreferencesController'
         }
         
         
