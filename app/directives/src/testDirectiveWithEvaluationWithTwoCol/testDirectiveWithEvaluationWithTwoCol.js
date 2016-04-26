@@ -27,7 +27,7 @@
         function controllerFunc($scope) {
             $scope.submitForm = submitForm;
             $scope.isValid = true;
-            $scope.grades = [];
+            $scope.grades = [[]];
 
             function submitForm() {
                 if ($scope[$scope.testName].$valid) {
