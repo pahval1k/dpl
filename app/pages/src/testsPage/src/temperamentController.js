@@ -4,9 +4,9 @@
 
     myApp.controller('temperamentController', temperamentController);
     
-    temperamentController.$inject = ['$scope', '$uibModalInstance'];
+    temperamentController.$inject = ['$scope', '$uibModalInstance', 'outputLogicService'];
     
-    function temperamentController($scope, $uibModalInstance) { 
+    function temperamentController($scope, $uibModalInstance, outputLogicService) {
         $scope.personQualityList = [['Легко иду на нестандартные поступки, даже не продумав все причины и следствия', 'Легко иду на разбор мысленных противоречий, даже при отсутствии на то особых поводов на поведенче-ском плане'],
                                     ['Внимательно отслеживаю свой внутренний голос даже на фоне значительных отвлечений со стороны внешнего мира', 'Не теряю чувствительности к вроде бы незначитель-ным изменениям в восприятии своего тела и внешнего мира даже при обдумывании важных проблем'],
                                     ['Даже в обычных событиях со всей серьезно-стью пытаюсь обнаружить для себя что-то новое и интересное', 'Даже не совсем обычные события стараюсь не воспри-нимать серьезно'],
@@ -18,54 +18,8 @@
         $scope.testDescription = "Цель применения теста: прогноз темперамента на основании психологического теста. Инструкция проведения теста. Отметьте степень достижимости для Вас состояний (по 10-бальной шкале) в представленных ниже 6 парах. По смыслу, описанные в каждой паре состояния, являются противоположными полю-сами соответствующего аспекта темперамента человека.";
         $scope.modalInstance = $uibModalInstance;
         
-        $scope.outputData = outputDataFnc;
-        
-        function outputDataFnc(grades) { 
-            console.log(grades);
-            var dp;
-            var t = [];
-            sumt0 = 0;
-            var tempCharacterTable = [['-1-11-11','1-1-111','-111-11', '-1-1-111','11111'],
-                                     ['-1-111-1','11-11-1','1-111-1','1-11-1-1','-11-1-1-1'],
-                                     ['-11-1-11','1-1111','1-11-11','11-111','-1-1111'],['11-1-1-1','111-1-1','1-1-1-1-1','-1-1-1-1-1','-1111-1'],
-                                     ['-11111','11-1-11','111-11','1-1-1-11','-1-1-1-11'],
-                                     ['1-1-11-1','-1-1-11-1','1111-1','-111-1-1','-1-11-1-1'],['','','-11-11-1','-11-111','']];
-            
-            
-            
-            alg();
-            
-            if (sumt0 > 0) { 
-                do {
-                    dp = dp - 0.05;
-                    alg();
-                    
-                } while (sumt <= 2)
-            }
-            
-            
-            function alg() { 
-                for (var i = 0; i<6 ; i++) {
-                    if (grades[j][1] == grades[j][0]) { 
-                        t[j] = 0;
-                        sumt0 ++;
-                        continue;
-                    }
-                    dp = (grades[j][1] - grades[j][0])/(grades[j][1] + grades[j][0]);
-                    if (dp < 0) { 
-                        dp = dp * -1;
-                    }
+        $scope.outputData = outputLogicService.outputDataFnc;
 
-                    if (dp > 0.2) {
-                        t[j] = dp;
-                    } else { 
-                        sumt0 ++;
-                        t[j] = 0;
-                    }
-
-                }
-            }
-        }
         
     }
 

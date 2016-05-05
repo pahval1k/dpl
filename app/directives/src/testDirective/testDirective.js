@@ -15,7 +15,8 @@
                 gradationDescription: "=",
                 itemList: "=",
                 modalInstance: "=",
-                content: "@"
+                content: "@",
+                outputData: '&'
             },
             controller: controllerFunc
         };
@@ -38,7 +39,12 @@
             function submitForm() {
                 if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors, $scope.itemList.length)) {
                     console.log("form has been submitted");
-                    var T2 = preferencesService.outputDataFormat($scope.selectedColors, $scope.selectedPosButton, $scope.selectedNegButton);
+                    var T2;
+                    if ($scope.outputData) {
+                        T2 = $scope.outputData({ grades: $scope.grades });
+                    } else {
+                        T2 = preferencesService.outputDataFormat($scope.selectedColors, $scope.selectedPosButton, $scope.selectedNegButton);
+                    }
                     var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
                     testDataService(userInfo.email, $scope.testName, T2).then(function successCallback(response) {
                         $scope.modalInstance.close();
