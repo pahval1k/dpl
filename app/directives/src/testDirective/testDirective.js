@@ -41,7 +41,7 @@
                     console.log("form has been submitted");
                     var T2;
                     if ($scope.outputData) {
-                        T2 = $scope.outputData({ grades: $scope.grades });
+                        T2 = $scope.outputData({ selectedColors: $scope.selectedColors, selectedPosButton: $scope.selectedPosButton, selectedNegButton: $scope.selectedNegButton});
                     } else {
                         T2 = preferencesService.outputDataFormat($scope.selectedColors, $scope.selectedPosButton, $scope.selectedNegButton);
                     }

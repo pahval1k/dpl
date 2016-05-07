@@ -2,11 +2,11 @@
 
     'use strict';
 
-    myApp.controller('roadToLifeController', vowelLetterController);
+    myApp.controller('roadToLifeController', roadToLifeController);
     
-    vowelLetterController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS'];
+    roadToLifeController.$inject = ['$scope', '$uibModalInstance', 'CONSTANTS','preferencesService'];
     
-    function vowelLetterController($scope, $uibModalInstance, CONSTANTS) {
+    function roadToLifeController($scope, $uibModalInstance, CONSTANTS, preferencesService) {
         $scope.roadsImgPathList = ['app/common/images/roadToLife1.png', 
                                   'app/common/images/roadToLife2.png', 
                                   'app/common/images/roadToLife3.png', 
@@ -26,6 +26,13 @@
                                         }];
         $scope.modalInstance = $uibModalInstance;
         $scope.content = CONSTANTS.IMG;
+        $scope.outputData = outputData;
+        
+        function outputData(selectedColors, selectedPosButton, selectedNegButton) { 
+            return preferencesService.outputDataFormat(selectedColors, selectedPosButton, selectedNegButton);
+            //TODO: expend functionality
+            
+        }
         console.log($scope.testName);
     }
 
