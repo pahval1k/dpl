@@ -23,7 +23,7 @@
 
         return directive;
 
-        function controllerFunc($scope) {
+        function controllerFunc($scope, $element, $attrs) {
             $scope.submitForm = submitForm;
             $scope.isValid = true;
             $scope.selectedColors = [];
@@ -38,9 +38,10 @@
 
             function submitForm() {
                 if (preferencesService.isFormValid($scope.selectedPosButton, $scope.selectedNegButton, $scope.selectedColors, $scope.itemList.length)) {
+                    console.log($element);
                     console.log("form has been submitted");
                     var T2;
-                    if ($scope.outputData) {
+                    if ($attrs.outputData) {
                         T2 = $scope.outputData({ selectedColors: $scope.selectedColors, selectedPosButton: $scope.selectedPosButton, selectedNegButton: $scope.selectedNegButton});
                     } else {
                         T2 = preferencesService.outputDataFormat($scope.selectedColors, $scope.selectedPosButton, $scope.selectedNegButton);

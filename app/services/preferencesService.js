@@ -47,10 +47,10 @@ myApp.service('preferencesService', ['$timeout', function ($timeout) {
             outputIndex ++;
         }
         T[outputIndex] = selectedPosButton + 1;
-        T1[T1[outputIndex]] = T1[T1[outputIndex]] + 2;
+        T[T[outputIndex]] = T[T[outputIndex]] + 2;
         outputIndex ++;
         T[outputIndex] = selectedNegButton + 1;
-        T1[T1[outputIndex]] = T1[T1[outputIndex]] - 2;
+        T[T[outputIndex]] = T[T[outputIndex]] - 2;
         return T;
     }
 

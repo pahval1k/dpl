@@ -29,8 +29,18 @@
         $scope.outputData = outputData;
         
         function outputData(selectedColors, selectedPosButton, selectedNegButton) { 
-            return preferencesService.outputDataFormat(selectedColors, selectedPosButton, selectedNegButton);
-            //TODO: expend functionality
+            var T = preferencesService.outputDataFormat(selectedColors, selectedPosButton, selectedNegButton);
+            var TT = [];
+            for (var i = 0; i<18;i++) {
+                TT[i] = 0;
+            }
+            TT[2] = T[1];
+            TT[1] = T[2];
+            TT[3] = T[3];
+            TT[5] = T[4];
+            TT[10] = T[5];
+            TT[8] = T[6];
+            return [T,TT];
             
         }
         console.log($scope.testName);

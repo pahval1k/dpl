@@ -35,6 +35,7 @@
             if (getLength($scope.arrButtons[0]) == 5 && getLength($scope.arrButtons[1]) == 5) {
                 var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
                 var outputData = outputDataFnc($scope.arrButtons);
+                console.log(outputData);
                 testDataService(userInfo.email, $scope.testName, outputData).then(function successCallback(response) {
                     $uibModalInstance.close();
                 }, function errorCallback(response) {
@@ -81,7 +82,15 @@
         
         function outputDataFnc(arrButtons) { 
             var jp = 0;
-            var TT18 = [[],[]];
+            var TT18 = [];
+            for (var i = 0; i<7; i++) {
+                for (var j = 0; j<5; j++) {
+                    if (TT18[i] == undefined) {
+                        TT18[i] = [];
+                    }
+                    TT18[i][j] = 0;
+                }
+            }
             for (var i = 0;i<5; i++) { 
                 jp = arrButtons[0][i];
                 if (jp === 1) { 
@@ -186,7 +195,7 @@
                     TT18[2][5] = TT18[2][5] + 2;
                 }
             }
-            return TT18;
+            return [arrButtons,TT18];
         }
     }
 

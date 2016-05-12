@@ -24,7 +24,7 @@
 
         return directive;
 
-        function controllerFunc($scope) {
+        function controllerFunc($scope, $element, $attrs) {
             $scope.submitForm = submitForm;
             $scope.isValid = true;
             $scope.grades = [];
@@ -33,11 +33,12 @@
                 if ($scope[$scope.testName].$valid) {
                     var userInfo = JSON.parse(localStorage.getItem(CONSTANTS.LOCAL_STORAGE_KEY));
                     var T1;
-                    if ($scope.outputData) { 
+                    if ($attrs.outputData) {
                         T1 = $scope.outputData({ grades: $scope.grades });
                     } else { 
                         T1 = $scope.grades;
                     }
+                    console.log(T1);
                     testDataService(userInfo.email, $scope.testName, T1).then(function successCallback(response) {
                         $scope.modalInstance.close();
                     }, function errorCallback(response) {

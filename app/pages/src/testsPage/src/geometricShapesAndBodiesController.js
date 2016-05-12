@@ -50,12 +50,12 @@
         $scope.outputData = outputData;
         
         function outputData(selectedColors, selectedPosButton, selectedNegButton) { 
-            var t16 = preferencesService.outputDataFormat(selectedColors, selectedPosButton, selectedNegButton);
-            var jp = t16[12];
+            var T16 = preferencesService.outputDataFormat(selectedColors, selectedPosButton, selectedNegButton);
+            var jp = T16[12];
             var jjp = makeJJ(jp);
             
             
-            var jn = t16[13];
+            var jn = T16[13];
             var jjn = makeJJ(jn);
             
             function makeJJ(j) { 
@@ -95,6 +95,9 @@
             
             j = jn;
             var TT16 = [];
+            for (var i = 0; i<20; i++) {
+                TT16[i] = 0;
+            }
             if (j == 1 || j == 3) { 
                 TT16[16] = TT16[17] = TT16[18] = -1;
             } else if (j === 2 || j === 4) { 
@@ -127,8 +130,7 @@
                     TT16[10] = TT16[11] = TT16[12] = 1;
                 }
             }
-            
-            return T16;
+            return [T16,TT16];
             //TODO: expend functionality
             
         }
